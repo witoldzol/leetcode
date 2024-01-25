@@ -10,7 +10,7 @@ I thought that it was a n^2 problem, but really, it is n^3 ( with some adjustmen
 Then I didn't realise that numbers have to be consequtive, so when defining ranges, make sure that the range closes in from both left
 and right side, example 1,2,3,4 => i would select 1, and then check 2,3,4|| 3,4 || 4 => what I needed to do was to check 2,3,4| 2,3 | 2
 which means narrowing the range from the "right"|end side of the array, not left]
-- solve it using divide and conquer method
+- [x] add tests
 [python modules cant have dashes in their names! use underscore !!! doh]
-- add tests
+- solve it using divide and conquer method
 - add indexes of start and end of subarray 
