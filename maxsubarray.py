@@ -2,9 +2,10 @@
 
 from typing import List, Tuple
 
-nums = [-2,1,-3,4,-1,2,1,-5,4]
-nums = [1,-1,2,1]
-nums = [-1,3,2,-1]
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+nums = [1, -1, 2, 1]
+nums = [-1, 3, 2, -1]
+
 
 class Solution:
     def merge(self, left: List[int], right: List[int]):
@@ -24,15 +25,21 @@ class Solution:
         r_s = sum(right)
         lmm = len(left) // 2
         rmm = len(right) // 2
-        # ll = left[-lmm+1:]
-        ll = left[lmm+1:]
-        # rr = right[:rmm+1]
-        rr = right[:rmm+1]
-        llrr = sum(ll+rr)
+        ll = left[lmm:]
+        rr = right[:rmm]
+        llrr = sum(ll + rr)
+        # alternative
+        if len(left) % 2 != 0 and len(left) != 1:
+            ll = left[lmm-1:]
+        if len(right) % 2 != 0 and len(right) != 1:
+            rr = right[:rmm+1]
+        alternative_llrr = sum(ll + rr)
         print(f"middle is = {ll + rr}")
         if llrr > m:
             m = llrr
-        ls, lm = self.split(left, m) 
+        if alternative_llrr > m:
+            m = alternative_llrr
+        ls, lm = self.split(left, m)
         rs, rm = self.split(right, m)
         if l_s > m:
             m = l_s
@@ -43,10 +50,11 @@ class Solution:
         if rm > m:
             m = rm
         # print(f"{llrr=}, {l_s=}, {r_s=}, {lm=}, {rm=}")
-        return  (ls+rs), m
+        return (ls + rs), m
 
     def maxSubArray(self, nums: List[int]) -> int:
         # divide and conquer
         return self.split(nums, 0)[1]
+
 
 Solution().maxSubArray(nums)

@@ -14,3 +14,5 @@ which means narrowing the range from the "right"|end side of the array, not left
 [python modules cant have dashes in their names! use underscore !!! doh]
 - solve it using divide and conquer method
 - add indexes of start and end of subarray 
+- implement caching in brute force ( use i,j=i,k = i..j) https://www.youtube.com/watch?v=5WZl3MMT0Eg
+- implement sliding window solution ( with two pinters - start of positive , and current max sub ending)
