@@ -1,11 +1,11 @@
 1) max-pair-sum-in-an-array
 # https://leetcode.com/problems/max-pair-sum-in-an-array/solutions/3902240/using-map-detailed-approach-and-easy-to-understand-code/
-- [x] solve using brute force
-- [x] optimize using hash maps
+- [X] solve using brute force
+- [X] optimize using hash maps
 2) max sum sub array 
-- [x] find a problem on leet code or in wild
+- [X] find a problem on leet code or in wild
 - [X] BRUTE FORCE
-- implement caching in brute force ( use i,j=i,k = i..j) https://www.youtube.com/watch?v=5WZl3MMT0Eg
+- [X] implement caching in brute force ( use i,j=i,k = i..j) https://www.youtube.com/watch?v=5WZl3MMT0Eg
 - add indexes of start and end of subarray 
 [Issues encountered:
 I thought that it was a n^2 problem, but really, it is n^3 ( with some adjustments because each following iteration is smaller ) 
