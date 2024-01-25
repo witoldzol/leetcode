@@ -35,6 +35,7 @@ def test_brute_force_cache(s, nums, expected):
 def test_brute_force_with_pointers(s, nums, expected):
     actual = s.brute_force_with_pointers(nums)
     assert expected == actual
+
 # def test_divide_and_conquer(s):
 #
 #     nums = [-1, 1, 2, -2]

@@ -40,40 +40,38 @@ class Solution:
     # at any point, check if sum > maximum. if yes, save index in second_pointer
     #
     # you should be done with a single pass
-        start_index = 0
-        max_index_start = 0
-        max_index_end = 0
         max_sum = 0
         sum = 0
+        negative_step = False
         # initiate start index
-        for i, x in enumerate(nums):
+        for x in nums:
             if x < 1:
                 continue
             else:
-                start_index = i
-                max_index_start = i
                 sum = x
                 max_sum = x
                 break
         # meat and potatoes 
-        for ix, x in enumerate(nums):
+        for x in nums:
             if x == 0:
                 continue
             if x < 0:
                 sum += x
+                negative_step = True
             else:
-                # check if current value beats the current sum - in case previous value was negative
-                if x > sum:
+                # check if current value beats the max current sum - in case previous value was negative
+                if x > sum and negative_step:
+                    print(f"{x=} is bugger than {sum=}")
                     # set new max if x can beat it
                     if x > max_sum:
+                        print(f"{x=} is bigger than {max_sum=}")
                         max_sum = x
-                        max_index_start = ix
                     # set a new start pointer
                     sum = x
-                    start_index = ix
+                    negative_step = False
                 else:
                     sum += x
                     if sum > max_sum:
+                        print(f"X is smaller than sum, but sum={sum} is bigger than max sum")
                         max_sum = sum
-                        max_index_end = ix
         return max_sum
