@@ -11,3 +11,6 @@ Then I didn't realise that numbers have to be consequtive, so when defining rang
 and right side, example 1,2,3,4 => i would select 1, and then check 2,3,4|| 3,4 || 4 => what I needed to do was to check 2,3,4| 2,3 | 2
 which means narrowing the range from the "right"|end side of the array, not left]
 - solve it using divide and conquer method
+[python modules cant have dashes in their names! use underscore !!! doh]
+- add tests
+- add indexes of start and end of subarray 

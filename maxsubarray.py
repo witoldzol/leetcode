@@ -6,24 +6,6 @@ nums = [-2,1,-3,4,-1,2,1,-5,4]
 nums = [1,-1,2,1]
 nums = [-1,3,2,-1]
 
-# BRUTE FORCE SOUTION N^3
-# class Solution:
-#     def maxSubArray(self, nums: List[int]) -> int:
-#         max = 0
-#         maxi = None
-#         for ix, x in enumerate(nums):
-#             print(f"====> i is {x}")
-#             for iy, y in enumerate(nums[ix+1:]):
-#                 sum = 0
-#                 for z in nums[ix+1:-iy]:
-#                     print(f"z is {z}")
-#                     sum += z
-#                 print("==========")
-#                 if sum > max:
-#                     max = sum
-#                     maxi = (ix,iy)
-#         print(f"Max sub is {max}, index {maxi}")
-
 class Solution:
     def merge(self, left: List[int], right: List[int]):
         return left + right
@@ -42,7 +24,9 @@ class Solution:
         r_s = sum(right)
         lmm = len(left) // 2
         rmm = len(right) // 2
-        ll = left[-lmm+1:]
+        # ll = left[-lmm+1:]
+        ll = left[lmm+1:]
+        # rr = right[:rmm+1]
         rr = right[:rmm+1]
         llrr = sum(ll+rr)
         print(f"middle is = {ll + rr}")
@@ -63,6 +47,6 @@ class Solution:
 
     def maxSubArray(self, nums: List[int]) -> int:
         # divide and conquer
-        print( self.split(nums, 0))
+        return self.split(nums, 0)[1]
 
 Solution().maxSubArray(nums)
