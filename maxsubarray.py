@@ -8,6 +8,29 @@ nums = [-1, 3, 2, -1]
 
 
 class Solution:
+
+    def brute_force(self, nums: List[int]) -> int:
+        maximum = 0
+        for ix, x in enumerate(nums):
+            for iy, y in enumerate(nums):
+                sum = 0
+                for z in nums[ix:iy]:
+                    sum += z
+                if sum > maximum:
+                    maximum = sum
+        return maximum
+
+    def brute_force_cache(self, nums: List[int]) -> int:
+        maximum = 0
+        for ix, x in enumerate(nums):
+            cache = 0
+            for y in nums[ix:]:
+                sum = cache + y
+                cache = sum
+                if sum > maximum:
+                    maximum = sum
+        return maximum
+
     def merge(self, left: List[int], right: List[int]):
         return left + right
 
@@ -30,9 +53,9 @@ class Solution:
         llrr = sum(ll + rr)
         # alternative
         if len(left) % 2 != 0 and len(left) != 1:
-            ll = left[lmm-1:]
+            ll = left[lmm - 1 :]
         if len(right) % 2 != 0 and len(right) != 1:
-            rr = right[:rmm+1]
+            rr = right[: rmm + 1]
         alternative_llrr = sum(ll + rr)
         print(f"middle is = {ll + rr}")
         if llrr > m:
