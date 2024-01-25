@@ -26,17 +26,41 @@ class Solution:
     def merge(self, left: List[int], right: List[int]):
         return left + right
 
-    def split(self, nums: List[int]) -> List[int]:
+    def split(self, nums: List[int], m: int) -> Tuple[List[int], int]:
         if len(nums) < 2:
-            print(f"got to the bottom, {nums=}")
-            return nums
+            # print(f"got to the bottom, {nums=}")
+            s = sum(nums)
+            if s > m:
+                m = s
+            return nums, m
         middle = len(nums) // 2
         left = nums[:middle]
+        l_s = sum(left)
         right = nums[middle:]
-        return self.split(left) + self.split(right)
+        r_s = sum(right)
+        lmm = len(left) // 2
+        rmm = len(right) // 2
+        ll = left[-lmm+1:]
+        rr = right[:rmm+1]
+        llrr = sum(ll+rr)
+        print(f"middle is = {ll + rr}")
+        if llrr > m:
+            m = llrr
+        ls, lm = self.split(left, m) 
+        rs, rm = self.split(right, m)
+        if l_s > m:
+            m = l_s
+        if r_s > m:
+            m = r_s
+        if lm > m:
+            m = lm
+        if rm > m:
+            m = rm
+        # print(f"{llrr=}, {l_s=}, {r_s=}, {lm=}, {rm=}")
+        return  (ls+rs), m
 
     def maxSubArray(self, nums: List[int]) -> int:
         # divide and conquer
-        print( self.split(nums))
+        print( self.split(nums, 0))
 
 Solution().maxSubArray(nums)
