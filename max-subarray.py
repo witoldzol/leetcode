@@ -3,6 +3,8 @@
 from typing import List, Tuple
 
 nums = [-2,1,-3,4,-1,2,1,-5,4]
+nums = [1,-1,2,1]
+nums = [-1,3,2,-1]
 
 # BRUTE FORCE SOUTION N^3
 # class Solution:
