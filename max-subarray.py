@@ -27,31 +27,13 @@ class Solution:
         return left + right
 
     def split(self, nums: List[int]) -> List[int]:
-        maxx = 0
         if len(nums) < 2:
             print(f"got to the bottom, {nums=}")
-            if not nums:
-                if nums[0] > maxx:
-                    maxx = nums[0]
-            return nums, maxx
+            return nums
         middle = len(nums) // 2
         left = nums[:middle]
         right = nums[middle:]
-        l_sum = sum(left)
-        if l_sum > maxx:
-            maxx = l_sum
-        r_sum = sum(right)
-        if r_sum > maxx:
-            maxx = r_sum
-        lm = left[-1]
-        rm = right[0]
-        lr = [lm]+[rm]
-        lm_sum = sum(lr)
-        if lm_sum > maxx:
-            maxx = lm_sum
-        l_split, l_max = self.split(left)
-        r_split, r_max = self.split(right)
-        return (l_split + r_split, max(maxx,l_max, r_max))
+        return self.split(left) + self.split(right)
 
     def maxSubArray(self, nums: List[int]) -> int:
         # divide and conquer
