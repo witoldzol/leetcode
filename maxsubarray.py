@@ -31,25 +31,6 @@ class Solution:
                     maximum = sum
         return maximum
 
-    def brute_force_with_pointers(self, nums: List[int]):
-        max_sum = -maxsize
-        sum = 0
-        # skip zeros, reset sum if sum goes to zero or below
-        for x in nums:
-            if x == 0:
-                continue
-            if x < 0:
-                sum += x
-                if sum > max_sum:
-                    max_sum = sum
-                if sum <= 0:
-                    sum = 0
-            else:
-                sum += x
-                if sum > max_sum:
-                    max_sum = sum
-        return max_sum
-
     def slim(self, nums: List[int]):
         maximum = nums[0]
         sum = 0
