@@ -40,3 +40,19 @@ class Solution:
             sum += n
             maximum = max(sum, maximum)
         return maximum
+
+    def slim_with_indexes(self, nums: List[int]):
+        maximum = nums[0]
+        sum = 0
+        start = 0
+        end = 0
+        for i, n in enumerate(nums):
+            if sum < 0: # if there is only one element, it will be taken instead of 0
+                sum = 0
+                if i < len(nums):
+                    start = i
+            sum += n
+            if sum >= maximum:
+                maximum = sum
+                end = i
+        return maximum, start, end
