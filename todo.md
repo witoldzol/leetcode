@@ -6,7 +6,7 @@
 - [X] find a problem on leet code or in wild
 - [X] BRUTE FORCE
 - [X] implement caching in brute force ( use i,j=i,k = i..j) https://www.youtube.com/watch?v=5WZl3MMT0Eg
-- add indexes of start and end of subarray 
+- [X] add indexes of start and end of subarray 
 [Issues encountered:
 I thought that it was a n^2 problem, but really, it is n^3 ( with some adjustments because each following iteration is smaller ) 
 Then I didn't realise that numbers have to be consequtive, so when defining ranges, make sure that the range closes in from both left
