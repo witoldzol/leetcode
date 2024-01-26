@@ -47,7 +47,7 @@ class Solution:
         start = 0
         end = 0
         for i, n in enumerate(nums):
-            if sum < 0: # if there is only one element, it will be taken instead of 0
+            if sum < 0: # we look backwards
                 sum = 0
                 if i < len(nums):
                     start = i
