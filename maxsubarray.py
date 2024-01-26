@@ -50,7 +50,7 @@ class Solution:
                     max_sum = sum
         return max_sum
 
-    def brute_force_with_pointers_slim(self, nums: List[int]):
+    def slim(self, nums: List[int]):
         maximum = nums[0]
         sum = 0
         for n in nums:
