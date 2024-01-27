@@ -56,35 +56,3 @@ class Solution:
                 maximum = sum
                 end = i
         return maximum, start, end
-
-    def find_max_left(self, arr: List[int]) -> int:
-        current_sum = 0
-        maximum = -10**4
-        print(f"going from mid to left for array {arr}")
-        for x in reversed(arr):
-            current_sum += x
-            if current_sum > maximum:
-                maximum = current_sum
-        return maximum
-
-    def find_max_right(self, arr: List[int]) -> int:
-        current_sum = 0
-        maximum = -10**4
-        for x in arr:
-            current_sum += x
-            if current_sum > maximum:
-                maximum = current_sum
-        return maximum
-
-    def divide(self, nums: List[int]) -> int:
-        if len(nums) < 2:
-            return nums[0]
-        mid = len(nums) // 2
-        left =  nums[:mid]
-        right = nums[mid:]
-        l = self.divide(left)
-        r = self.divide(right)
-        max_left = self.find_max_left(left)
-        max_right = self.find_max_right(right)
-        m = max(max_left + max_right, max_left, max_right)
-        return max(l,r,m)

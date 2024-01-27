@@ -15,4 +15,5 @@ and right side, example 1,2,3,4 => i would select 1, and then check 2,3,4|| 3,4 
 which means narrowing the range from the "right"|end side of the array, not left]
 - [x] add tests
 [python modules cant have dashes in their names! use underscore !!! doh]
-- solve it using divide and conquer method
+- [X] solve it using divide and conquer method
+- solve divide and conquer using indexes only
