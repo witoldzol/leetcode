@@ -67,3 +67,23 @@ def test_slim_with_indexes(s, nums, expected_sum, expected_start, expected_end):
     assert expected_sum == actual[0]
     assert expected_start == actual[1]
     assert expected_end == actual[2]
+
+@pytest.mark.parametrize(
+    "nums, expected_sum",
+    [
+        ([-1, 1, 2, -2], 3),
+        ([-2, -1, 1, 2, -2], 3),
+        ([-2, 1, 1, 2, -2], 4),
+        ([-2, 1, -3, 4, -1, 2, 1, -5, 4], 6),
+        ([-1], -1),
+        ([-2,-3,-1], -1),
+        ([-1,-2,-3,0], 0),
+        ([-1,0,-2,2], 2)
+    ],
+)
+def test_split(s, nums, expected_sum):
+    actual = s.divide(nums)
+    assert expected_sum == actual
+    # assert expected_start == actual[1]
+    # assert expected_end == actual[2]
+
