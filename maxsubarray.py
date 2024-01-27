@@ -77,20 +77,14 @@ class Solution:
         return maximum
 
     def divide(self, nums: List[int]) -> int:
-        max_b = -10**4
-        all_negative = True
-        for x in nums:
-            if x > max_b:
-                max_b = x
-            if x > 0:
-                all_negative = False
-        if all_negative:
-            return max_b
         if len(nums) < 2:
             return nums[0]
         mid = len(nums) // 2
         left =  nums[:mid]
         right = nums[mid:]
+        l = self.divide(left)
+        r = self.divide(right)
         max_left = self.find_max_left(left)
         max_right = self.find_max_right(right)
-        return max(max_left + max_right, max_left, max_right)
+        m = max(max_left + max_right, max_left, max_right)
+        return max(l,r,m)
