@@ -16,6 +16,5 @@ which means narrowing the range from the "right"|end side of the array, not left
 - [x] add tests
 [python modules cant have dashes in their names! use underscore !!! doh]
 - [X] solve it using divide and conquer method
-- implement divide and conquer again, 
-  - do mid to left and right
+- [X] implement divide and conquer again, 
 - solve divide and conquer using indexes onlyg

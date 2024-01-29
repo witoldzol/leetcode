@@ -87,3 +87,14 @@ class Solution:
         cross_left = self.middle_to_left(left)
         cross_right = self.middle_to_right(right)
         return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
+
+    def split_i(self, nums: List[int], left: int, right: int) -> int:
+        if left == right:
+            return nums[left]
+        middle = (left + right) // 2
+        left_split = self.split(nums, left, right)
+        right_split = self.split(right)
+        cross_left = self.middle_to_left(left)
+        cross_right = self.middle_to_right(right)
+        return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
+
