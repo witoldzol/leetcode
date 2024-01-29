@@ -18,3 +18,4 @@ which means narrowing the range from the "right"|end side of the array, not left
 - [X] solve it using divide and conquer method
 - [X] implement divide and conquer again, 
 - solve divide and conquer using indexes onlyg
+  - figure out how to divide arrays using just indexes and not slices and how to pass the params
