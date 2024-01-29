@@ -58,15 +58,25 @@ class Solution:
         return maximum, start, end
 
     def middle_to_left(self, nums: List[int] ) -> int:
-        # from middle to start, keep summing up and keeping pointer to max value achieved
-    # todo
+        current_sum = 0
+        maximum = nums[0]
+        for x in reversed(nums):
+            current_sum += x
+            if current_sum > maximum:
+                maximum = current_sum
+        return maximum
 
     def middle_to_right(self, nums: List[int] ) -> int:
-        # from middle to start, keep summing up and keeping pointer to max value achieved
-    # todo
+        current_sum = 0
+        maximum = nums[0]
+        for x in nums:
+            current_sum += x
+            if current_sum > maximum:
+                maximum = current_sum
+        return maximum
+
 
     def split(self, nums: List[int]) -> int:
-        # if single item, return
         if len(nums) == 1:
             return nums[0]
         middle = len(nums) // 2
@@ -76,3 +86,4 @@ class Solution:
         right_split = self.split(right)
         cross_left = self.middle_to_left(left)
         cross_right = self.middle_to_right(right)
+        return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)

@@ -82,7 +82,7 @@ def test_slim_with_indexes(s, nums, expected_sum, expected_start, expected_end):
     ],
 )
 def test_split(s, nums, expected_sum):
-    actual = s.divide(nums)
+    actual = s.split(nums)
     assert expected_sum == actual
     # assert expected_start == actual[1]
     # assert expected_end == actual[2]
