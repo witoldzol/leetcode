@@ -88,12 +88,32 @@ class Solution:
         cross_right = self.middle_to_right(right)
         return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
 
-    def split_i(self, nums: List[int], left: int, right: int) -> int:
-        if left == right:
-            return nums[left]
-        middle = (left + right) // 2
-        left_split = self.split(nums, left, right)
-        right_split = self.split(right)
+    def middle_to_left_i(self, nums: List[int]) -> int:
+        current_sum = 0
+        maximum = nums[0]
+        for x in reversed(nums):
+            current_sum += x
+            if current_sum > maximum:
+                maximum = current_sum
+        return maximum
+
+    def middle_to_right_i(self, nums: List[int] ) -> int:
+        current_sum = 0
+        maximum = nums[0]
+        for x in nums:
+            current_sum += x
+            if current_sum > maximum:
+                maximum = current_sum
+        return maximum
+
+    def split_i(self, nums: List[int], start: int, end: int) -> int:
+        if start > end:
+            raise Exception(f"start is bigger than end, fix it ! {start=} {end=}")
+        if start == end:
+            return nums[start]
+        middle = (start + end) // 2
+        left_split = self.split(nums, start, middle)
+        right_split = self.split(nums, middle + 1, end)
         cross_left = self.middle_to_left(left)
         cross_right = self.middle_to_right(right)
         return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
