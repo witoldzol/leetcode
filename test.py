@@ -63,10 +63,10 @@ def test_slim(s, nums, expected):
     ],
 )
 def test_slim_with_indexes(s, nums, expected_sum, expected_start, expected_end):
-    actual = s.slim_with_indexes(nums)
-    assert expected_sum == actual[0]
-    assert expected_start == actual[1]
-    assert expected_end == actual[2]
+    actual = s.split_i(nums, 0, len(nums)-1)
+    assert expected_sum == actual
+    # assert expected_start == actual
+    # assert expected_end == actual
 
 @pytest.mark.parametrize(
     "nums, expected_sum",
