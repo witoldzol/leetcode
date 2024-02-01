@@ -91,8 +91,7 @@ class Solution:
     def start_to_middle(self, nums: List[int], start: int, end: int) -> int:
         current_sum = 0
         maximum = nums[start]
-        for x in reversed(range(start, end)):
-            print(f"=======> {start=} {end=} {x=}")
+        for x in reversed(range(start, end + 1)):
             current_sum += nums[x]
             if current_sum > maximum:
                 maximum = current_sum
@@ -107,17 +106,21 @@ class Solution:
                 maximum = current_sum
         return maximum
 
+    # [1]
+    # s = 0
+    # e = 1
+    # 0 + 1 = 1 //2 = 0
     def split_i(self, nums: List[int], start: int, end: int) -> int:
         if start > end:
             raise Exception(f"start is bigger than end, fix it ! {start=} {end=}")
         if start == end:
             return nums[start]
         middle = (start + end) // 2
-        print(f"{middle=}")
+        print(f"{start=} {end=} {middle=}")
         left_split = self.split_i(nums, start, middle)
-        right_split = self.split_i(nums, middle + 1, end)
+        right_split = self.split_i(nums, middle, end)
         cross_left = self.start_to_middle(nums, start, middle)
-        cross_right = self.middle_to_end(nums, middle + 1, end)
+        cross_right = self.middle_to_end(nums, middle, end)
         print(f"{cross_left=}")
         print(f"{cross_right=}")
         return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)

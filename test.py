@@ -50,6 +50,27 @@ def test_slim(s, nums, expected):
     actual = s.slim(nums)
     assert expected == actual
 
+@pytest.mark.parametrize("nums, exptected_max", [
+    ([-1, 1, 2, -2], 1),
+    ([-2, -1, 1, 2, -2], -1),
+    ([-2, -3, 1, 2], -2),
+    ([-2, 3, -2, 4, -1, 2, 1, -5, 4], 5)
+])
+def test_start_to_middle(s, nums, exptected_max):
+    middle = len(nums) // 2
+    actual = s.start_to_middle(nums, 0, middle)
+    assert exptected_max == actual 
+
+@pytest.mark.parametrize("nums, exptected_max", [
+    ([-1, 1, 2, -2], 2),
+    # ([-2, -1, 1, 2, -2], -1),
+    # ([-2, -3, 1, 2], -2),
+    # ([-2, 3, -2, 4, -1, 2, 1, -5, 4], 5)
+])
+def test_middle_to_end(s, nums, exptected_max):
+    middle = (len(nums) // 2)
+    actual = s.middle_to_end(nums, middle, len(nums))
+    assert exptected_max == actual 
 
 @pytest.mark.parametrize(
     "nums, expected_sum, expected_start, expected_end",
