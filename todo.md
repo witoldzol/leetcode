@@ -17,5 +17,7 @@ which means narrowing the range from the "right"|end side of the array, not left
 [python modules cant have dashes in their names! use underscore !!! doh]
 - [X] solve it using divide and conquer method
 - [X] implement divide and conquer again, 
-- solve divide and conquer using indexes onlyg
-  - debug the split in middle by indexes
+ - XX debug the split in middle by indexes
+- lookup the soution for indexes https://www.geeksforgeeks.org/maximum-subarray-sum-using-divide-and-conquer-algorithm/
+- create anki ticket to how do divide and conquer
+- revise the O(n) soution - re do it from memory
