@@ -112,15 +112,14 @@ class Solution:
         if start == end:
             return nums[start]
         middle = (start + end) // 2
-        print(f"{start=} {end=} {middle=}")
         left_split = self.split_i(nums, start, middle)
         if middle + 1 == end:
-            right_split = -10**4
+            right_split = self.split_i(nums, middle + 1, end)
         else:
             right_split = self.split_i(nums, middle, end)
         cross_left = self.start_to_middle(nums, start, middle)
-        cross_right = self.middle_to_end(nums, middle, end)
-        print(f"{cross_left=}")
-        print(f"{cross_right=}")
+        if middle + 1 == end:
+            cross_right = self.middle_to_end(nums, middle, end)
+        else:
+            cross_right = self.middle_to_end(nums, middle, end)
         return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
-

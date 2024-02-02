@@ -83,7 +83,7 @@ def test_middle_to_end(s, nums, exptected_max):
         # ([-1], -1, 0, 0)
     ],
 )
-def test_slim_with_indexes(s, nums, expected_sum, expected_start, expected_end):
+def test_split_i(s, nums, expected_sum, expected_start, expected_end):
     actual = s.split_i(nums, 0, len(nums)-1)
     assert expected_sum == actual
     # assert expected_start == actual
