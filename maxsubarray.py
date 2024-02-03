@@ -119,15 +119,9 @@ class Solution:
         middle = (start + end) // 2
         print(f"{middle=}")
         left_split = self.split_i(nums, start, middle)
-        if middle == start:
-            right_split = self.split_i(nums, middle + 1, end)
-        else:
-            right_split = self.split_i(nums, middle, end)
+        right_split = self.split_i(nums, middle, end)
         cross_left = self.start_to_middle(nums, start, middle)
-        if middle == start:
-            cross_right = self.middle_to_end(nums, middle + 1, end)
-        else:
-            cross_right = self.middle_to_end(nums, middle, end)
+        cross_right = self.middle_to_end(nums, middle, end)
         print(f"End of function, returning max of {left_split=},right_split + left_split = {right_split + cross_left}, {cross_right=}, {cross_left=}, {cross_right=}")
         print("==================================================")
         return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
