@@ -86,7 +86,7 @@ class Solution:
         right_split = self.split(right)
         cross_left = self.middle_to_left(left)
         cross_right = self.middle_to_right(right)
-        return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
+        return max(plit, right_split, cross_left + cross_right, cross_left, cross_right)
 
     def start_to_middle(self, nums: List[int], start: int, end: int) -> int:
         current_sum = 0
@@ -98,6 +98,8 @@ class Solution:
         return maximum
 
     def middle_to_end(self, nums: List[int], start: int, end: int ) -> int:
+        if start == end:
+            return nums[start-1]
         current_sum = 0
         maximum = nums[start]
         for x in range(start, end):
@@ -107,19 +109,25 @@ class Solution:
         return maximum
 
     def split_i(self, nums: List[int], start: int, end: int) -> int:
+        print(f"starting split function, {start=}, {end=}")
         if start > end:
             raise Exception(f"start is bigger than end, fix it ! {start=} {end=}")
         if start == end:
-            return nums[start]
+            print(f"Start == End {start=}; End of function, returning {nums[start - 1]}")
+            print("==================================================")
+            return nums[start - 1]
         middle = (start + end) // 2
+        print(f"{middle=}")
         left_split = self.split_i(nums, start, middle)
-        if middle + 1 == end:
+        if middle == start:
             right_split = self.split_i(nums, middle + 1, end)
         else:
             right_split = self.split_i(nums, middle, end)
         cross_left = self.start_to_middle(nums, start, middle)
-        if middle + 1 == end:
-            cross_right = self.middle_to_end(nums, middle, end)
+        if middle == start:
+            cross_right = self.middle_to_end(nums, middle + 1, end)
         else:
             cross_right = self.middle_to_end(nums, middle, end)
+        print(f"End of function, returning max of {left_split=},right_split + left_split = {right_split + cross_left}, {cross_right=}, {cross_left=}, {cross_right=}")
+        print("==================================================")
         return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
