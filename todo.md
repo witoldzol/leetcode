@@ -18,5 +18,8 @@ which means narrowing the range from the "right"|end side of the array, not left
 - [X] solve it using divide and conquer method
 - [X] implement divide and conquer again, 
  - XX debug the split in middle by indexes
-- lookup the soution for indexes https://www.geeksforgeeks.org/maximum-subarray-sum-using-divide-and-conquer-algorithm/
-- revise the O(n) soution - re do it from memory
+- [X] revise the O(n) soution - re do it from memory
+- [X] get a popular stack question ( queue with two stacks / one stack - using recursion? ) 
+https://www.geeksforgeeks.org/problems/parenthesis-checker2744/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
+- solve the balanced parens question
+
