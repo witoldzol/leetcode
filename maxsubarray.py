@@ -143,3 +143,17 @@ class Solution:
         print(f"End of function, returning max of {result}")
         print("==================================================")
         return result
+
+def find_max(arr):
+# iterate ove the array, keep adding the numbers, if the sum ever dips below zero, reset the pointer
+    sum = 0
+    maximum = -10**4
+    for x in arr:
+        if sum < 0: # it's important to check before we add new one, this way we look back and not ahead
+            sum = 0
+        sum += x
+        if sum > maximum:
+            maximum = sum
+    return maximum
+
+

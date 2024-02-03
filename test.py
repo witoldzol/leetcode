@@ -1,5 +1,5 @@
 import pytest
-from maxsubarray import Solution
+from maxsubarray import Solution, find_max
 
 
 @pytest.fixture
@@ -86,3 +86,16 @@ def test_split(s, nums, expected_sum):
     # assert expected_start == actual[1]
     # assert expected_end == actual[2]
 
+@pytest.mark.parametrize("nums, expected", [
+        ([-1, 1, 2, -2], 3),
+        ([-2, -1, 1, 2, -2], 3),
+        ([-2, 1, 1, 2, -2], 4),
+        ([-2, 1, -3, 4, -1, 2, 1, -5, 4], 6),
+        ([-1], -1),
+        ([-2,-3,-1], -1),
+        ([-1,-2,-3,0], 0),
+        ([-1,0,-2,2], 2)
+    ])
+def test_find_max(nums, expected):
+    actual = find_max(nums)
+    assert expected == actual
