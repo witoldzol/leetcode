@@ -86,7 +86,7 @@ class Solution:
         right_split = self.split(right)
         cross_left = self.middle_to_left(left)
         cross_right = self.middle_to_right(right)
-        return max(plit, right_split, cross_left + cross_right, cross_left, cross_right)
+        return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
 
     def start_to_middle(self, nums: List[int], start: int, end: int) -> int:
         current_sum = 0
