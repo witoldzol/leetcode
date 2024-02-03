@@ -50,41 +50,19 @@ def test_slim(s, nums, expected):
     actual = s.slim(nums)
     assert expected == actual
 
-@pytest.mark.parametrize("nums, exptected_max", [
-    ([-1, 1, 2, -2], 1),
-    ([-2, -1, 1, 2, -2], -1),
-    ([-2, -3, 1, 2], -2),
-    ([-2, 3, -2, 4, -1, 2, 1, -5, 4], 5)
-])
-def test_start_to_middle(s, nums, exptected_max):
-    middle = len(nums) // 2
-    actual = s.start_to_middle(nums, 0, middle)
-    assert exptected_max == actual 
-
-@pytest.mark.parametrize("nums, exptected_max", [
-    ([-1, 1, 2, -2], 2),
-    # ([-2, -1, 1, 2, -2], -1),
-    # ([-2, -3, 1, 2], -2),
-    # ([-2, 3, -2, 4, -1, 2, 1, -5, 4], 5)
-])
-def test_middle_to_end(s, nums, exptected_max):
-    middle = (len(nums) // 2)
-    actual = s.middle_to_end(nums, middle, len(nums))
-    assert exptected_max == actual 
-
 @pytest.mark.parametrize(
     "nums, expected_sum, expected_start, expected_end",
     [
         ([-1, 1, 2, -2], 3, 1, 2),
-        # ([-2, -1, 1, 2, -2], 3, 2, 3),
-        # ([-2, 1, 1, 2, -2], 4, 1, 3),
-        # ([-2, 1, -3, 4, -1, 2, 1, -5, 4], 6, 3, 6),
-        # ([1, 2, -1, 4], 6, 0, 3),
-        # ([-1], -1, 0, 0)
+        ([-2, -1, 1, 2, -2], 3, 2, 3),
+        ([-2, 1, 1, 2, -2], 4, 1, 3),
+        ([-2, 1, -3, 4, -1, 2, 1, -5, 4], 6, 3, 6),
+        ([1, 2, -1, 4], 6, 0, 3),
+        ([-1], -1, 0, 0)
     ],
 )
 def test_split_i(s, nums, expected_sum, expected_start, expected_end):
-    actual = s.split_i(nums, 0, len(nums))
+    actual = s.split_i(nums, 0, len(nums) - 1)
     assert expected_sum == actual
     # assert expected_start == actual
     # assert expected_end == actual

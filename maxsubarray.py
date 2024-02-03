@@ -99,7 +99,7 @@ class Solution:
 
     def middle_to_end(self, nums: List[int], start: int, end: int ) -> int:
         if start == end:
-            return nums[start-1]
+            return nums[start]
         current_sum = 0
         maximum = nums[start]
         for x in range(start, end):
@@ -108,20 +108,38 @@ class Solution:
                 maximum = current_sum
         return maximum
 
+    def maxCrossingSum(self,arr, l, m, h): 
+        # left
+        sm = 0
+        left_sum = -10000
+        for i in range(m, l-1, -1): 
+            sm = sm + arr[i] 
+            if (sm > left_sum): 
+                left_sum = sm 
+        # right
+        sm = 0
+        right_sum = -1000
+        for i in range(m, h + 1): 
+            sm = sm + arr[i] 
+            if (sm > right_sum): 
+                right_sum = sm 
+        return max(left_sum + right_sum - arr[m], left_sum, right_sum) 
+
     def split_i(self, nums: List[int], start: int, end: int) -> int:
         print(f"starting split function, {start=}, {end=}")
         if start > end:
-            raise Exception(f"start is bigger than end, fix it ! {start=} {end=}")
+            return -10**4
+            # raise Exception(f"start is bigger than end, fix it ! {start=} {end=}")
         if start == end:
             print(f"Start == End {start=}; End of function, returning {nums[start - 1]}")
             print("==================================================")
             return nums[start - 1]
         middle = (start + end) // 2
         print(f"{middle=}")
-        left_split = self.split_i(nums, start, middle)
-        right_split = self.split_i(nums, middle, end)
-        cross_left = self.start_to_middle(nums, start, middle)
-        cross_right = self.middle_to_end(nums, middle, end)
-        print(f"End of function, returning max of {left_split=},right_split + left_split = {right_split + cross_left}, {cross_right=}, {cross_left=}, {cross_right=}")
+        left_split = self.split_i(nums, start, middle-1)
+        right_split = self.split_i(nums, middle+1, end)
+        cross = self.maxCrossingSum(nums, start, middle, end)
+        result = max(left_split, right_split, cross)
+        print(f"End of function, returning max of {result}")
         print("==================================================")
-        return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
+        return result
