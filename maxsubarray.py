@@ -123,7 +123,7 @@ class Solution:
             sm = sm + arr[i] 
             if (sm > right_sum): 
                 right_sum = sm 
-        return max(left_sum + right_sum - arr[m], left_sum, right_sum) 
+        return max(left_sum + right_sum - arr[m], left_sum, right_sum)  # why - arr[m] ???? 
 
     def split_i(self, nums: List[int], start: int, end: int) -> int:
         print(f"starting split function, {start=}, {end=}")
