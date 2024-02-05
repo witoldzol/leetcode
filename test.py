@@ -1,5 +1,6 @@
 import pytest
 from maxsubarray import Solution, find_max
+from balanced_parens import check_parens
 
 
 @pytest.fixture
@@ -99,3 +100,14 @@ def test_split(s, nums, expected_sum):
 def test_find_max(nums, expected):
     actual = find_max(nums)
     assert expected == actual
+
+@pytest.mark.parametrize("input, expected", [
+    ("{}", True),
+    ("{{}}", True),
+    ("", True),
+    ("{[}}", False),
+    ("{[{[{[{}]}]}]", False),
+])
+def test_parens(input, expected):
+    assert expected == check_parens(input)
+
