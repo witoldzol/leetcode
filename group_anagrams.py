@@ -6,14 +6,20 @@ expected =  [["bat"],["nat","tan"],["ate","eat","tea"]]
 def group_anagrams(strs: List[str]) -> List[List[str]]:
     grouped = []
     for x in strs:
-        for y in strs:
-            if x == y:
-                continue
-            if is_anagram(x,y):
-                grouped.append([x,y]) # todo we have to check if we alerady have a group with that anagram
+        found = False
+        for g in grouped:
+            if is_anagram(x,g[0]):
+                g.extend([x])
+                found = True
+        if not found:
+            grouped.append([x])
+    return grouped
 
+def test_group_anagrams():
+    assert [[""]] == group_anagrams([""]) 
+    # assert expected == group_anagrams(input) 
+    print(group_anagrams(input) )
 
-assert [[""]] == group_anagrams([""]) 
 
 def is_anagram(first: str, second) -> bool:
     f_dict = {}
