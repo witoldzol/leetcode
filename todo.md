@@ -23,4 +23,5 @@ which means narrowing the range from the "right"|end side of the array, not left
 https://www.geeksforgeeks.org/problems/parenthesis-checker2744/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=bottom_sticky_on_article
 - [X] solve the balanced parens question
 -- [X] add more tests 
-- group anagrams - make it faster to pass the tests
+- [X] group anagrams - make it faster to pass the tests
+- find a popular problem with a stack in the leetcode
