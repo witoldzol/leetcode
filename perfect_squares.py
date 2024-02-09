@@ -1,15 +1,22 @@
 import math
 def perfect_squares(n: int) -> int:
-    sq = math.sqrt(n)
+    reminder = n
     counter = 0
-    if sq % n == 0:
-        return n // sq
-    else:
-        counter += 1
-        reminder = n - (math.floor(sq) * math.floor(sq))
-        print(f"{reminder=}")
+    while reminder:
+        sq = math.sqrt(reminder)
+        print(f"{sq=}")
+        if sq % reminder == 0:
+            return counter + (reminder // sq)
+        else:
+            print(f"BEFORE {reminder=} ")
+            print(f"{math.floor(sq)=}")
+            reminder = reminder - pow(math.floor(sq), 2)
+            print(f"reminder for {sq=} is {reminder=}")
+            counter += 1
+            print(f"{reminder=}")
+    return counter
 
-perfect_squares(13)
+print( perfect_squares(12))
     
 
 # assert 3 == perfect_squares(12)
