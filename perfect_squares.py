@@ -22,5 +22,5 @@ def solve(n: int, cache = None):
 assert 1 == solve(1)
 assert 3 == solve(12)
 assert 2 == solve(13)
-assert 2 == solve(130)
+assert 2 == solve(1300)
 
