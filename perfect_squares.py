@@ -1,7 +1,8 @@
 import math
 
-cache = [0] * (100)
-def solve(n: int, cache):
+def solve(n: int, cache = None):
+    if not cache:
+        cache = [0] * (n + 1)
     if n == 0:
         return 0
     if n < 0:
@@ -18,8 +19,8 @@ def solve(n: int, cache):
         ans = min(ans, 1 + s) 
     return ans
 
-
-assert 1 == solve(1, cache)
-assert 3 == solve(12, cache)
-assert 2 == solve(13, cache)
+assert 1 == solve(1)
+assert 3 == solve(12)
+assert 2 == solve(13)
 assert 2 == solve(130)
+
