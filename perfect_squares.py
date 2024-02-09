@@ -1,23 +1,21 @@
 import math
-def perfect_squares(n: int) -> int:
-    reminder = n
-    counter = 0
-    while reminder:
-        sq = math.sqrt(reminder)
-        print(f"{sq=}")
-        if sq % reminder == 0:
-            return counter + (reminder // sq)
-        else:
-            print(f"BEFORE {reminder=} ")
-            print(f"{math.floor(sq)=}")
-            reminder = reminder - pow(math.floor(sq), 2)
-            print(f"reminder for {sq=} is {reminder=}")
-            counter += 1
-            print(f"{reminder=}")
-    return counter
+cache = [0] * (n + 1)
+cache[0] = 0
+cache[1] = 1
 
-print( perfect_squares(12))
-    
+def solve(n: int):
+    if n == 0:
+        return 0
+    if n < 0:
+        return float('inf')
+    max_range = math.floor(n ** 0.5)
+    ans = float('inf')
+    for i in range(1, max_range + 1):
+        s = solve(n - (i*i))
+        ans = min(ans, 1 + s) 
+    return ans
 
-# assert 3 == perfect_squares(12)
-# assert 2 == perfect_squares(13)
+
+assert 1 == solve(1)
+assert 3 == solve(12)
+assert 2 == solve(13)
