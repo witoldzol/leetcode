@@ -1,25 +1,43 @@
 from collections import deque
 
 class MyStack:
+    def un_reverse(self):
+        while len(self.temp):
+            self.current.append(self.temp.popleft())
+        self.reversed = False
+
     def __init__(self):
         self.size = 0
         self.current = deque()
         self.temp = deque()
+        self.reversed = False
     def push(self, x: int) -> None:
+        if self.reversed:
+            self.un_reverse()
         self.current.append(x)
     def pop(self) -> int:
-        pass
+        if self.reversed:
+            return self.temp.popleft()
+        while len(self.current):
+            i = self.current.popleft()
+            if len(self.current):
+                self.temp.append(i)
+            else:
+                self.reversed = True
+                return i
     def top(self) -> int:
-        pass
+        if self.reversed:
+            self.un_reverse()
+        return self.current[0]
     def empty(self) -> bool:
         return self.size == 0
 
-
-# LIFO from two FIFO
-# push 1,2,3
-# queue(1,2,4)
-# move to second 
-# second (1,2) - check if last item ( in temp ), don't push to second queue, just return
-# pop -> 3
-# push 4
-# pop -> 4
+s = MyStack()
+s.push(1)
+s.push(2)
+print(s.pop())
+print(s.pop())
+s.push(3)
+print(s.pop())
+s.push(55)
+assert 55 == s.top()
