@@ -1,9 +1,4 @@
 import math
-# n = 4
-# for 1 - 4 we look at the all posible combos
-# i = 1
-# perfect square, return 1
-# i = 2 , reminder 1, 1 + fun(1) => 2
 
 def wrapper(n: int):
     cache = [0] * (n + 1)
@@ -44,3 +39,30 @@ assert 3 == iterative(12)
 assert 2 == iterative(13)
 # assert 2 == solve(1300)
 
+def w(n: int):
+    results = [-1] * n
+    results[0] = 0
+    results[1] = 1
+    def bob(n:int):
+        # what is the base case ?
+        if n == 0:
+            return 0
+        if n == 1:
+            return 1
+        if n < 0:
+            raise Exception('Negative number detected')
+        # greedy way is to get the sq root and check if we have a perfect square
+        sqr = n ** 0.5
+        if sqr % 1 == 0:
+            return 1
+        for i in range(1, n + 1): # if we want to do 12, we go through each n, and calculate MIN number of combinations 
+            # i=1, r = 1
+            # i=2, r = 2
+            # i=3, r= #!/usr/bin/env python3
+            # i=4 r=1
+            for j in range(1, math.floor(sqr)):
+
+def test_w():
+    assert 1 == w(4)
+    assert 3 == w(12)
+    assert 2 == w(13)

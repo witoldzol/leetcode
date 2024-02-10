@@ -24,5 +24,5 @@ https://www.geeksforgeeks.org/problems/parenthesis-checker2744/1?itm_source=geek
 - [X] solve the balanced parens question
 -- [X] add more tests 
 - [X] group anagrams - make it faster to pass the tests
-- implement stack using queues
+- [X] implement stack using queues
 - daily - perfect squares
