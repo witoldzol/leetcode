@@ -1,6 +1,6 @@
 import math
 def perfect_squares(n: int):
-    results = [0] * (n + 1)
+    results = [float('inf')] * (n + 1)
     results[0] = 0
     results[1] = 1
     def solve(n):
@@ -8,19 +8,18 @@ def perfect_squares(n: int):
             return 0
         if n < 0:
             raise Exception(f'Negative number detected {n}')
-        # for every i between 1 and n ( inclusive )
-        # check for perfect squares ( 1 to floor(sq_root(i))) or i*i <= n
-        for i in range(1, n + 1):
-            sqr = n ** 0.5
-            print(f"{i=}")
-            for j in range(1, math.floor(sqr) + 1): # also inclusive
-                print(f"{j=}")
-                reminder = n - (j * j)
-                if results[j] != 0:
-                    sol = results[j]
-                else:
-                    sol = min(results[j], solve(reminder) + 1)
-                    results[j] = sol
-        return results[n]
+        sqr = n ** 0.5
+        middle = math.floor(sqr)
+        ans = float('inf')
+        for i in range(1, middle + 1): # include outer bound
+            if results[i] != float('inf'):
+                ans = results[i]
+            else:
+                reminder = n - (i * i)
+                a = 1 + solve(reminder)
+                results[i] = a
+                ans = min(ans, a)
+        return ans
 
-print(perfect_squares(4))
+
+print(f"solution = {perfect_squares(12)}")
