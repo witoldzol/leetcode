@@ -12,14 +12,12 @@ def perfect_squares(n: int):
         middle = math.floor(sqr)
         ans = float('inf')
         for i in range(1, middle + 1): # include outer bound
-            if results[i] != float('inf'):
-                ans = results[i]
-            else:
-                reminder = n - (i * i)
-                a = 1 + solve(reminder)
-                results[i] = a
-                ans = min(ans, a)
+            reminder = n - i*i
+            ans = min(ans, solve(reminder) + 1)
         return ans
+    return solve(n)
 
 
 print(f"solution = {perfect_squares(12)}")
+assert 3 == perfect_squares(12)
+assert 2 == perfect_squares(13)
