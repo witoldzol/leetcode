@@ -10,35 +10,15 @@ def water(nums: List[int]) -> int:
     left = 0
     right = len(nums) - 1
     maximum = 0
-    while left != right:
-        print(f"start = {left=} and {right=}")
+    while left < right:
         width = right - left
-        height = min(nums[left], nums[right])
-        area = width * height
-        if area > maximum:
-            maximum = area
-        left += 1
-        if left == right:
-            return maximum
-        width = right - left
-        print(f"after adding 1 to left we have {left=} and {right=}")
-        height = min(nums[left], nums[right])
-        area = width * height
-        if area > maximum:
-            maximum = area
-        right -= 1
-        if left == right:
-            return maximum
-        print(f"after removing 1 from right we have {left=} and {right=}")
-        width = right - left
-        height = min(nums[left], nums[right])
-        area = width * height
-        if area > maximum:
-            maximum = area
+        lower_height = min(nums[left], nums[right])
+        if nums[left] < nums[right]: # this is the crucial part -> we move only the lower line
+            left += 1
+        else:
+            right -= 1
+        maximum = max(maximum, width * lower_height)
     return maximum
-
-
-
 
 print(f"solution = {water(input)}")
 assert 36 == water(input)
