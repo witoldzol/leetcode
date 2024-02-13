@@ -3,6 +3,7 @@
 from typing import List
 
 input = [-1,0,1,2,-1,-4]
+input = [-1,0,1,2,-1,-4,-2,-3,3,0,4]
 
 def three_sum(input: List[int]):
     results = set()
@@ -12,6 +13,11 @@ def three_sum(input: List[int]):
                 if x + y + z == 0 and ix != iy and ix != iz and iy != iz:
                     x, y ,z = sorted([x,y,z])
                     results.add((x,y,z))
-    return results
+    return [list(x) for x in results]
 
 print(f"solution {three_sum(input)}")
+expected = [[-4,0,4],[-4,1,3],[-3,-1,4],[-3,0,3],[-3,1,2],[-2,-1,3],[-2,0,2],[-1,-1,2],[-1,0,1]]
+
+def test_three_sum():
+    assert len(expected) == len(three_sum(input))
+
