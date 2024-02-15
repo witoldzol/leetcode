@@ -34,7 +34,7 @@ def three_sum(nums: List[int]):
     return ans
 
 def complement(input):
-    results = []
+    r = set()
     # split sets into negative, positive and zeros list
     p = []
     n = []
@@ -50,25 +50,25 @@ def complement(input):
     N = set(n)
     # edge case with 3 or more zeros
     if len(Z) > 2:
-        results.append([0,0,0])
+        r.add((0,0,0))
     # complement of zeros
     if len(Z):
         for f in P:
             if -f in N:
-                results.append([-f, 0, f])
+                r.add((-f,0,f))
     # complement of 2s positive
     for i in range(len(p)):
         for j in range(i+1, len(p)):
             two_sum = p[i] + p[j]
             if -two_sum in N:
-                results.append([p[i], p[j], -two_sum])
+                r.add(tuple(sorted([p[i], p[j], -two_sum])))
     # complement of 2s negative
     for i in range(len(n)):
         for j in range(i+1, len(n)):
             two_sum = n[i] + n[j]
             if -two_sum in P:
-                results.append([n[i], n[j], -two_sum])
-    return results
+                r.add(tuple(sorted([n[i], n[j], -two_sum])))
+    return [[x,y,z] for x,y,z in r]
 
 
 def brute_force(nums: List[int]):
