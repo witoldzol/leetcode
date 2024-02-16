@@ -50,32 +50,16 @@ def solve(nums: List[int], target: int) -> int:
     #     # TARGET INSIDE 
     #     if target >= nums[middle]:
     #         return binary_search(nums[middle:], target, middle, len(nums))
-    while True: 
-        if nums[0] <= nums[middle] and target <= nums[middle]: # target in left side
-                return binary_search(nums, target, 0, middle)
-        elif target >= nums[middle]:
-                return binary_search(nums, target, middle, len(nums))
-        else:
-
-        1) left sorted:
-            left contains -> return
-            left not contains -> drop left, split again
-        2) left not sorted
-            split again
-        3) right sorted:
-            right contains -> return
-            right not contains -> drop right
-        4) right not sorted
-            split again
-
-        # 4,5,6 
-        # 7,0,1,2
-        #
-
-
-
-
-
-
-
-# print(solve(input, 4))
+    #
+    # check if left is sorted
+    if nums[0] <= nums[middle]:
+        if target <= nums[middle]: # target in left side
+            return binary_search(nums, target, 0, middle)
+        else: # left is sorted, but doesn't contain the target, drop left and split again
+            return solve(nums[middle:], target)
+    # right is sorted
+    else:
+        if target >= nums[middle]: # if target in right side, return
+            return binary_search(nums, target, middle, len(nums))
+        else: # right is sorted but doesn't contain target, drop right and split again on left
+            return solve(nums[:middle + 1], target)
