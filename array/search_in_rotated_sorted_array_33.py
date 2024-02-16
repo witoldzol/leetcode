@@ -33,25 +33,7 @@ def binary_search(nums: List[int], target: int, low: int = 0, high = 0) -> int:
             low = mid+1
 
 def solve(nums: List[int], target: int) -> int:
-    # we know that if we split list in half, at least one half will be sorted
-#   if the sorted list contains the target number, we can just do binary search on it
-#   if not, split the other list in half again, and recheck
-    # split until we find the target inside in sorted half 
-    # split in half
     middle = len(nums) // 2
-    # figure out if the left side is in order
-    # # LEFT in order
-    # if nums[0] <= nums[middle]:
-    #     # TARGET INSIDE 
-    #     if target <= nums[middle]: # target in left side
-    #         return binary_search(nums, target, 0, middle)
-    # # RIGHT in order
-    # else:
-    #     # TARGET INSIDE 
-    #     if target >= nums[middle]:
-    #         return binary_search(nums[middle:], target, middle, len(nums))
-    #
-    # check if left is sorted
     if nums[0] <= nums[middle]:
         if target <= nums[middle]: # target in left side
             return binary_search(nums, target, 0, middle)
