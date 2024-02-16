@@ -19,31 +19,26 @@ def binary_search(nums: List[int], target: int) -> int:
             low = mid+1
     return -1
 
-def binary_search(nums: List[int], target: int, low: int = 0, high = 0) -> int:
-    if not high:
-        high = len(nums)
+def my_search(nums: List[int], target: int) -> int:
+    low, high = 0, len(nums) - 1
     while low <= high:
-        mid = (low + high) // 2
-        print(f"{low=} {mid=} {high=}")
-        if nums[mid] == target:
-            return mid
-        elif nums[mid] > target: # 6, we need 4
-            high = mid-1
-        else:
-            low = mid+1
+        middle = (low + high) // 2
+        if nums[middle] == target:
+            return middle
+        # if left sorted
+        if nums[low] <= nums[middle]:
+            # is target in the left part?
+            if nums[low] < target < nums[middle]:
+                high = middle - 1
+            else:
+                low = middle + 1
+        else: # right is sorted
+            # does it have a target?
+            if nums[middle] < target < nums[high]:
+                low = middle + 1
+            else:
+                high = middle -1 
+    return -1
 
-def solve(nums: List[int], target: int) -> int:
-    middle = len(nums) // 2
-    if nums[0] <= nums[middle]:
-        if target <= nums[middle]: # target in left side
-            return binary_search(nums, target, 0, middle)
-        else: # left is sorted, but doesn't contain the target, drop left and split again
-            return solve(nums[middle:], target)
-    # right is sorted
-    else:
-        if target >= nums[middle]: # if target in right side, return
-            return binary_search(nums, target, middle, len(nums))
-        else: # right is sorted but doesn't contain target, drop right and split again on left
-            return solve(nums[:middle + 1], target)
-
-print(solve(nums,1))
+# nums = [4,5,6,7,0,1,2]
+print(my_search(nums,0))
