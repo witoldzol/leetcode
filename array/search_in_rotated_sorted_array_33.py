@@ -63,3 +63,5 @@ def solve(nums: List[int], target: int) -> int:
             return binary_search(nums, target, middle, len(nums))
         else: # right is sorted but doesn't contain target, drop right and split again on left
             return solve(nums[:middle + 1], target)
+
+print(solve(nums,1))
