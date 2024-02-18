@@ -6,8 +6,24 @@ nums = [1,2,3]
 output = [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 
 def per(nums: List[int]) -> List[List[int]]:
-    result = []
+    results = []
+    if len(nums) == 1:
+        return [nums[:]]
     for i in range(len(nums)):
-        result.append(per(nums[i:nums]))
+        # base condition
+        n = nums.pop(0)
+        #   generate permutations
+        perms = per(nums)
+        # append n back to results
+        for p in perms:
+            p.append(n)
+        # resuts
+        results.extend(perms)
+        # add n back
+        nums.append(n)
+    return results
 
+print(per(nums))
+print(f"{output}")
+assert per(nums).sort() == output.sort()
 
