@@ -5,4 +5,6 @@ select teacher.name from teacher, dept where teacher.dept=dept.id
 SELECT teacher.name, dept.name
  FROM teacher INNER JOIN dept
            ON (teacher.dept=dept.id)
-
+-- 3
+select teacher.name, dept.name from teacher
+left join dept on teacher.dept = dept.id
