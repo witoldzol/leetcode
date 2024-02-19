@@ -62,11 +62,12 @@ def per(nums: List[int]) -> List[List[int]]:
 def bob(nums):
     res = []
     if len(nums) == 1:
-        return [nums[:]]
+        return nums[:]
     x = nums.pop(0)
     y = bob(nums)
-    for yy in y:
-        yy.append(x)
+    y.append(x)
+    # for yy in y:
+    #     yy.append(x)
     res.extend(y)
     return res
 
