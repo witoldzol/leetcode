@@ -1,6 +1,4 @@
 # https://leetcode.com/problems/permutations/description/
-import pudb
-
 from typing import List
 
 nums = [1,2,3]
