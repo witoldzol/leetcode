@@ -13,3 +13,8 @@ join route b on (a.company=b.company and a.num=b.num)
 join stops stopA on (a.stop = stopA.id)
 join stops stopB on (b.stop = stopB.id)
 where stopA.name='Craiglockhart' and stopB.name='London Road'
+-- 7
+select a.company, a.num from route a 
+join route b on (a.company=b.company and a.num = b.num)
+where a.stop = 115 and b.stop=137
+group by a.num
