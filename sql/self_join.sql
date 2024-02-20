@@ -18,3 +18,9 @@ select a.company, a.num from route a
 join route b on (a.company=b.company and a.num = b.num)
 where a.stop = 115 and b.stop=137
 group by a.num
+-- 8
+select a.company, a.num from route a
+join route b on (a.company = b.company and a.num = b.num)
+join stops sA on (a.stop = sA.id)
+join stops sB on (b.stop = sB.id)
+where sA.name = 'Craiglockhart' and sB.name = 'Tollcross'
