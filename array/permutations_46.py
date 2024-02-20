@@ -22,3 +22,24 @@ def permutate(nums: List[int]) -> List[List[int]]:
         # add n back, otherwise we run out of digits in n before loop ends
         nums.append(n)
     return results
+
+
+input = [1,2,3]
+
+def per(nums: List[int]) -> List[List[int]]:
+    results = []
+    # lets start with array reversal
+    if len(nums) == 1:
+        return [nums[:]]
+    for _ in range(len(nums)):
+        x = nums.pop(0)
+        permutations = per(nums)
+        for p in permutations:
+            p.append(x)
+        results.extend(permutations)
+        nums.append(x)
+    return results
+
+print(per(input))
+
+
