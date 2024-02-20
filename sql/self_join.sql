@@ -24,3 +24,10 @@ join route b on (a.company = b.company and a.num = b.num)
 join stops sA on (a.stop = sA.id)
 join stops sB on (b.stop = sB.id)
 where sA.name = 'Craiglockhart' and sB.name = 'Tollcross'
+-- 9
+select distinct stops.name, a.company, a.num from route a 
+join route b on (a.num = b.num and a.company = b.company)
+join stops on (a.stop = stops.id)
+where a.company = 'LRT' and b.stop = 53
+order by b.num
+
