@@ -31,6 +31,7 @@ join stops on (a.stop = stops.id)
 where a.company = 'LRT' and b.stop = 53
 order by b.num
 -- 10
+-- solution explained here : https://hackernoon.com/learning-self-join-queries-with-sqlzoo-xc163ue7
 select r1.num, r1.company, s1.name, r4.num, r4.company from route r1
 join route r2 on ( r1.company = r2.company and r1.num = r2.num)
 join stops s1 on ( r2.stop = s1.id)
