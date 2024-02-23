@@ -25,34 +25,35 @@ def zigzag(root: TreeNode) -> List[List[int]]:
     from collections import deque
     q = deque()
     q.append(root)
-    count = 0
     direction = 'left'
+    temp = []
     while len(q):
         node = q.popleft()
         print(node.val)
-        if count == 2:
-            if direction == 'left':
-                direction = 'right'
-            else:
-                direction = 'left'
-            result.append(temp)
-            temp = []
-            count = 0
+        result.append(temp)
         if direction == 'left':
             if node.left:
                 q.append(node.left)
                 temp.append(node.left.val)
             if node.right:
-                temp.append(node.right.val)
                 q.append(node.right)
+                temp.append(node.right.val)
             result.append(temp)
+            if direction == 'left':
+                direction = 'right'
+            else:
+                direction = 'left'
         else:
             if node.right:
-                q.append(node.left)
+                q.append(node.right)
                 temp.append(node.right.val)
             if node.left:
-                q.append(node.right)
+                q.append(node.left)
                 temp.append(node.left.val)
+            if direction == 'left':
+                direction = 'right'
+            else:
+                direction = 'left'
 
 
 zigzag(root)
