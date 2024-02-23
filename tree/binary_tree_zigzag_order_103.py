@@ -12,40 +12,47 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def zig(tree: List[int]) -> List[List[int]]:
-    # pu.db
+# test data
+l2 = TreeNode(15, None, None)
+r2 = TreeNode(7, None, None)
+r1 = TreeNode(20, l2, r2)
+l1 = TreeNode(9, None, None)
+root = TreeNode(3, l1,l2)
+
+def zigzag(root: TreeNode) -> List[List[int]]:
+    # bfs
     result = []
-    if len(tree) < 2:
-        return [tree]
-    root = tree.pop(0)
-    result.append([root])
-    direction = 'right'
+    from collections import deque
+    q = deque()
+    q.append(root)
     count = 0
-    temp = []
-    for x in tree:
-        if x == None:
-            continue
-        # flush after every 2 insertions
+    direction = 'left'
+    while len(q):
+        node = q.popleft()
+        print(node.val)
         if count == 2:
+            if direction == 'left':
+                direction = 'right'
+            else:
+                direction = 'left'
             result.append(temp)
             temp = []
             count = 0
-            if direction == 'left':
-                direction = 'right'
-            else: 
-                direction = 'left'
-        # insertion 
         if direction == 'left':
-            temp.append(x)
+            if node.left:
+                q.append(node.left)
+                temp.append(node.left.val)
+            if node.right:
+                temp.append(node.right.val)
+                q.append(node.right)
+            result.append(temp)
         else:
-            if count == 0:
-                temp = [None, x]
-            else:
-                temp[0] = x
-        count += 1
-    if count == 2:
-        result.append(temp)
-    return result
+            if node.right:
+                q.append(node.left)
+                temp.append(node.right.val)
+            if node.left:
+                q.append(node.right)
+                temp.append(node.left.val)
 
-print(zig(input) )
-print(f"exptected = {expected}")
+
+zigzag(root)
