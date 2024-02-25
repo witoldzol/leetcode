@@ -23,13 +23,23 @@ root = TreeNode(3, l1, r1)
 def zigzag(root: TreeNode) -> List[List[int]]:
     q = deque()
     q.append(root)
+    direction = 'left'
+    temp = []
     while len(q):
         node = q.popleft()
         print(node.val)
-        if node.left:
-            q.append(node.left)
-        if node.right:
-            q.append(node.right)
+        if direction == 'right':
+            if node.left:
+                q.append(node.left)
+            if node.right:
+                q.append(node.right)
+            direction = 'left'
+        else:
+            if node.right:
+                q.append(node.right)
+            if node.left:
+                q.append(node.left)
+            direction = 'right'
 
 
 zigzag(root)
