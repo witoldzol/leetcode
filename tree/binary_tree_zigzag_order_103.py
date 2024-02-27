@@ -21,40 +21,6 @@ r1 = TreeNode(20, l2, r2)
 l1 = TreeNode(9, None, None)
 root = TreeNode(3, l1, r1)
 
-# def zigzag(root: TreeNode) -> List[List[int]]:
-#     if not root:
-#         return []
-#     result = []
-#     q = deque()
-#     q.append(root)
-#     result.append([root.val])
-#     direction = 'left'
-#     temp = []
-#     while len(q):
-#         node = q.popleft()
-#         print(node.val)
-#         if direction == 'right':
-#             if node.left:
-#                 q.append(node.left)
-#                 temp.append(node.left.val)
-#             if node.right:
-#                 q.append(node.right)
-#                 temp.append(node.right.val)
-#             direction = 'left'
-#         else:
-#             if node.right:
-#                 q.append(node.right)
-#                 temp.append(node.right.val)
-#             if node.left:
-#                 q.append(node.left)
-#                 temp.append(node.left.val)
-#             direction = 'right'
-#         if temp:
-#             result.append(temp[:])
-#         temp = []
-#     print(f"result {result}")
-#     return result
-
 def zigzag(root: TreeNode) -> List[List[int]]:
     if not root:
         return []
