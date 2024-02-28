@@ -33,33 +33,25 @@ def zigzag(root: TreeNode) -> List[List[int]]:
     result = []
     q = deque()
     q.append([root])
-    direction = 'left'
+    flip = 1
     temp = []
     # pu.db
     while len(q):
         nodes = q.popleft()
         # update results
         vals = [n.val for n in nodes]
+        vals = vals[::flip]
         result.append(vals)
         # update queue
         for node in nodes:
-            if direction == 'right':
-                if node.left:
-                    temp.append(node.left)
-                if node.right:
-                    temp.append(node.right)
-            else:
-                if node.right:
-                    temp.append(node.right)
-                if node.left:
-                    temp.append(node.left)
-            if direction == 'left':
-                direction = 'right'
-            else:
-                direction = 'left'
+            if node.left:
+                temp.append(node.left)
+            if node.right:
+                temp.append(node.right)
         if temp:
             q.append(temp[:])
         temp = []
+        flip *= -1
     return result
 
 # print(zigzag(root))
@@ -82,5 +74,6 @@ def zig(root: Optional[TreeNode]) -> List[List[int]]:
         ans.append(levelVal[::flip])
         flip *= -1
     return ans
-
-print(zig(input))
+print(zigzag(root))
+print("=======")
+print(zig(root))
