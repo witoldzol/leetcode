@@ -1,11 +1,13 @@
 # https://leetcode.com/problems/validate-binary-search-tree/description/
+from typing import Optional, List
+# import pudb; pudb.set_trace()
+# import pubd
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
-from typing import Optional, List
 
 def get_false_tree():
     r2 = TreeNode(5, None, None)
@@ -47,27 +49,21 @@ def test_is_valid():
     result = [True]
     is_valid(get_false_tree(), prev, result)
     assert False == result[0]
+    print("================================================================================")
+    print("================================================================================")
+    print("================================================================================")
 
-vprev = None
-vresult = [True]
-
-def test_my_func():
-    global vprev
-    global vresult
-    v(get_true_tree(), vprev, vresult)
-    assert True == result[0]
-
-
-def v(root: Optional[TreeNode], vprev, vresult) -> bool:
-    if vprev != None:
-        print(f"{vprev.val=}")
+def v(root: Optional[TreeNode], prev: int = float('-inf')) -> bool:
+    # pu.db
     if not root:
-        return True
-    v(root.left, vprev, vresult)
-    if vprev:
-        print(f"current value is {root.val}, and vprevious value is = {vprev.val}")
-    if vprev and root.val <= vprev.val:
-        vresult[0] = False
-        return
-    vprev = root
-    v(root.right, vprev, vresult)
+        return None
+    v(root.left, root.val)
+    if prev and root.val < prev:
+        return False
+    print(f"visiting node = {root.val}, previous node = {prev}")
+    r = v(root.right, root.val)
+    if r == False:
+        return False
+    return True
+
+print(f"result = {v(get_true_tree())}")
