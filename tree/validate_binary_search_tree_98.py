@@ -26,18 +26,23 @@ def inorder(root: Optional[TreeNode], result: List[int] = None,  prev: TreeNode 
     if root.right:
         result = inorder(root.right, result)
     return result
-    
-print(f"solution is = {inorder(root)}")
 
-# class Solution:
-#     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-#         prev = float('-inf')
-#         def inorder(node):
-#             nonlocal prev
-#             if not node:
-#                 return True
-#             if not (inorder(node.left) and prev < node.val):
-#                 return False
-#             prev = node.val
-#             return inorder(node.right)
-#         return inorder(root)
+# print(f"solution is = {inorder(root)}")
+
+def is_valid(root: Optional[TreeNode], prev: int = float('-inf')) -> bool:
+    # in order traversal -> go to the bottom of LEFT, then CENTER, then RIGHT
+    # with each step, value should be higher, if not, we have invalid tree
+    if not root:
+        return True
+    # left
+    if root.left:
+        if not is_valid(root.left, root.val):
+            return False
+    # root
+    if root.val <= prev:
+        return False
+    # right
+    return is_valid(root.right, root.val)
+
+
+print(f"is_valid == {is_valid(root)}")
