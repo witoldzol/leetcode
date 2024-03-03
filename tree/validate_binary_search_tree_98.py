@@ -48,31 +48,26 @@ def test_is_valid():
     is_valid(get_false_tree(), prev, result)
     assert False == result[0]
 
-# vprev = None
-# vresult = [True]
-#
-# def v(root: Optional[TreeNode], vprev, vresult) -> bool:
-#     if vprev != None:
-#         print(f"{vprev.val=}")
-#     if not root:
-#         return True
-#     v(root.left, vprev, vresult)
-#     if vprev:
-#         print(f"current value is {root.val}, and vprevious value is = {vprev.val}")
-#     if vprev and root.val <= vprev.val:
-#         vresult[0] = False
-#         return
-#     vprev = root
-#     v(root.right, vprev, vresult)
-#
-# is_valid(root, prev, result)
-# print("==================================================")
-# print("==================================================")
-# print("==================================================")
-# v(root, vprev, vresult)
-# print(f"{result[0]=}")
-# print(f"{vresult[0]=}")
-#
-#
-# # def v(root: Optional[TreeNode], prev, result) -> bool:
-#
+vprev = None
+vresult = [True]
+
+def test_my_func():
+    global vprev
+    global vresult
+    v(get_true_tree(), vprev, vresult)
+    assert True == result[0]
+
+
+def v(root: Optional[TreeNode], vprev, vresult) -> bool:
+    if vprev != None:
+        print(f"{vprev.val=}")
+    if not root:
+        return True
+    v(root.left, vprev, vresult)
+    if vprev:
+        print(f"current value is {root.val}, and vprevious value is = {vprev.val}")
+    if vprev and root.val <= vprev.val:
+        vresult[0] = False
+        return
+    vprev = root
+    v(root.right, vprev, vresult)
