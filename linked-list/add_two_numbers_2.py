@@ -49,11 +49,12 @@ def array_to_linked_list(arr: List[int]) -> ListNode | None:
             tail = tail.next
     return head
 
-
+import pudb
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        # pu.db
         result = []
-        reminder = 0
+        carry_over = 0
         end = 0
         l1_end = False
         l2_end = False
@@ -72,22 +73,32 @@ class Solution:
             else:
                 r = 0
                 l2_end = True
-            sum = l + r + reminder
+            sum = l + r + carry_over
             if sum > 9:
+                carry_over = sum // 10
                 end = sum % 10
-                reminder = sum - end
                 result.append(end)
             else:
                 result.append(sum)
-        if reminder > 0:
-            reminder = ''.split(str(reminder))
+                carry_over = 0
+        if carry_over > 0:
+            reminder = ''.split(str(carry_over))
+            if len(reminder) == 1 and reminder[0] == '':
+                return array_to_linked_list(result)
             result.append(reminder)
         return array_to_linked_list(result)
 
-l1 = array_to_linked_list([1,2,3])
-l2 = array_to_linked_list([1,2,3])
+ # l1 = array_to_linked_list([1,2,3])
+# l2 = array_to_linked_list([1,2,3])
+# print(Solution().addTwoNumbers(l1,l2))
+
 l = array_to_linked_list([9,9,9,9,9,9,9])
 r = array_to_linked_list([9,9,9,9])
-print(Solution().addTwoNumbers(l1,l2))
 # [8,9,9,9,0,0,0,1]
-print(Solution().addTwoNumbers(l,l))
+s = Solution().addTwoNumbers(l,l)
+print("==================================================")
+print("==================================================")
+print(f"result is = {s} and it should be [8,9,9,9,0,0,0,1]")
+print("==================================================")
+print("==================================================")
+assert [8,9,9,9,0,0,0,1] == s
