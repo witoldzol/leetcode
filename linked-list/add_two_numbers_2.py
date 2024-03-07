@@ -37,20 +37,20 @@ class ListNode:
 
 from typing import Optional, List
 
+def array_to_linked_list(arr: List[int]) -> ListNode | None:
+    head = None
+    tail = None
+    for x in arr:
+        if head == None:
+            head = ListNode(x)
+            tail = head
+        else:
+            tail.next = ListNode(x)
+            tail = tail.next
+    return head
+
+
 class Solution:
-    def array_to_linked_list(self, arr: List[int]) -> ListNode | None:
-        head = None
-        tail = None
-        for x in arr:
-            if head == None:
-                head = ListNode(x)
-                tail = head
-            else:
-                tail.next = ListNode(x)
-                tail = tail.next
-        return head
-
-
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         result = []
         reminder = 0
@@ -82,5 +82,12 @@ class Solution:
         if reminder > 0:
             reminder = ''.split(str(reminder))
             result.append(reminder)
-        return self.array_to_linked_list(result)
+        return array_to_linked_list(result)
 
+l1 = array_to_linked_list([1,2,3])
+l2 = array_to_linked_list([1,2,3])
+l = array_to_linked_list([9,9,9,9,9,9,9])
+r = array_to_linked_list([9,9,9,9])
+print(Solution().addTwoNumbers(l1,l2))
+# [8,9,9,9,0,0,0,1]
+print(Solution().addTwoNumbers(l,l))
