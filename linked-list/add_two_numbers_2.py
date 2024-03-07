@@ -21,18 +21,33 @@ class ListNode:
                 break
         return str(r)
 
+# def test_array_to_linked_list():
+#     ll = Solution().array_to_linked_list([1,2,3])
+#     print("==================================================")
+#     print(f"{ll=}")
+#     print("==================================================")
+#     result = []
+#     while True:
+#         result.append(ll.val)
+#         if ll.next:
+#             ll = ll.next
+#         else:
+#             break
+#     assert result == [1,2,3]
 
 from typing import Optional, List
 
 class Solution:
     def array_to_linked_list(self, arr: List[int]) -> ListNode | None:
         head = None
+        tail = None
         for x in arr:
             if head == None:
                 head = ListNode(x)
+                tail = head
             else:
-                head.next = ListNode(x)
-                head = head.next
+                tail.next = ListNode(x)
+                tail = tail.next
         return head
 
 
@@ -69,16 +84,3 @@ class Solution:
             result.append(reminder)
         return self.array_to_linked_list(result)
 
-def test_array_to_linked_list():
-    ll = Solution().array_to_linked_list([1,2,3])
-    print("==================================================")
-    print(ll)
-    print("==================================================")
-    result = []
-    while True:
-        result.append(ll.val)
-        if ll.next:
-            ll = ll.next
-        else:
-            break
-    assert result == [1,2,3]
