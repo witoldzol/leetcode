@@ -1,41 +1,24 @@
 # https://leetcode.com/problems/add-two-numbers/description/
-
-# [9,9,9,9,9,9,9]
-# [9,9,9,9]
-# 8,9,9,9,0,0,0,1
-# [8,9,9,9,0,0,0,1]
-
+from typing import Optional, List
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-
     def __repr__(self):
         r = []
         while True:
-            if self.val:
+            if self.val != None:
                 r.append(self.val)
             if self.next:
                 self = self.next
             else:
                 break
         return str(r)
-
-# def test_array_to_linked_list():
-#     ll = Solution().array_to_linked_list([1,2,3])
-#     print("==================================================")
-#     print(f"{ll=}")
-#     print("==================================================")
-#     result = []
-#     while True:
-#         result.append(ll.val)
-#         if ll.next:
-#             ll = ll.next
-#         else:
-#             break
-#     assert result == [1,2,3]
-
-from typing import Optional, List
+def ll_to_array(head: ListNode) -> List[int]:
+    curr = head
+    while curr:
+        yield curr.val
+        curr = curr.next
 
 def array_to_linked_list(arr: List[int]) -> ListNode | None:
     head = None
@@ -78,6 +61,7 @@ class Solution:
                 carry_over = sum // 10
                 end = sum % 10
                 result.append(end)
+                print(f"{result=}")
             else:
                 result.append(sum)
                 carry_over = 0
@@ -88,17 +72,12 @@ class Solution:
             result.append(reminder)
         return array_to_linked_list(result)
 
- # l1 = array_to_linked_list([1,2,3])
-# l2 = array_to_linked_list([1,2,3])
-# print(Solution().addTwoNumbers(l1,l2))
-
 l = array_to_linked_list([9,9,9,9,9,9,9])
 r = array_to_linked_list([9,9,9,9])
-# [8,9,9,9,0,0,0,1]
-s = Solution().addTwoNumbers(l,l)
+s = Solution().addTwoNumbers(l,r)
 print("==================================================")
 print("==================================================")
 print(f"result is = {s} and it should be [8,9,9,9,0,0,0,1]")
 print("==================================================")
 print("==================================================")
-assert [8,9,9,9,0,0,0,1] == s
+assert [8,9,9,9,0,0,0,1] == list(ll_to_array(s))
