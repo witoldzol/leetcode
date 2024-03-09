@@ -7,7 +7,7 @@ def firstUniqChar_old(s: str) -> int:
         elif c in encountered:
             repeated.append(c)
         encountered.append(c)
-    to_return = ''
+    to_return = ""
     for c in encountered:
         if c not in repeated:
             to_return = c
@@ -19,6 +19,7 @@ def firstUniqChar_old(s: str) -> int:
         if c == to_return:
             return i
     raise Exception("oh oh somehing went wrong")
+
 
 def test_first_unique():
     assert 0 == firstUniqChar_old("leetcode")

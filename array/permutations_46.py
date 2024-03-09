@@ -1,8 +1,9 @@
 # https://leetcode.com/problems/permutations/description/
 from typing import List
 
-nums = [1,2,3]
-output = [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+nums = [1, 2, 3]
+output = [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+
 
 def permutate(nums: List[int]) -> List[List[int]]:
     results = []
@@ -12,7 +13,7 @@ def permutate(nums: List[int]) -> List[List[int]]:
     for _ in range(len(nums)):
         # get first element
         n = nums.pop(0)
-        #   generate permutations - results become input 
+        #   generate permutations - results become input
         perms = permutate(nums)
         # append n back to results
         for p in perms:
@@ -24,7 +25,8 @@ def permutate(nums: List[int]) -> List[List[int]]:
     return results
 
 
-input = [1,2,3]
+input = [1, 2, 3]
+
 
 def per(nums: List[int]) -> List[List[int]]:
     results = []
@@ -40,6 +42,5 @@ def per(nums: List[int]) -> List[List[int]]:
         nums.append(x)
     return results
 
+
 print(per(input))
-
-

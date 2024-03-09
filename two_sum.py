@@ -1,5 +1,6 @@
-nums = [3,2,4]
-nums = [3,3]
+nums = [3, 2, 4]
+nums = [3, 3]
+
 
 def two_sum(nums, target):
     for ix, x in enumerate(nums):
@@ -11,6 +12,7 @@ def two_sum(nums, target):
             if y == diff:
                 return ix, iy
 
+
 def two(nums, target):
     diffs = {}
     for ix, x in enumerate(nums):
@@ -19,6 +21,6 @@ def two(nums, target):
         diff = target - x
         diffs[diff] = ix
 
+
 print(f"solution = {two_sum(nums, 6)}")
 print(f"solution = {two(nums, 6)}")
-

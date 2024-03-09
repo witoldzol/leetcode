@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/add-two-numbers/description/
 from typing import Optional, List
+
 # import pudb
 
 
@@ -80,11 +81,14 @@ class Solution:
             result.append(reminder)
         return array_to_linked_list(result)
 
+
 l = array_to_linked_list([2, 4, 3])
 r = array_to_linked_list([5, 6, 4])
 s = Solution().addTwoNumbers(l, r)
 r = list(ll_to_array(s))
 assert r == [7, 0, 8]
+
+
 def test_foo():
     l = array_to_linked_list([9, 9, 9, 9, 9, 9, 9])
     r = array_to_linked_list([9, 9, 9, 9])

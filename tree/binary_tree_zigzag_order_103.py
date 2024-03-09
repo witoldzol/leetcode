@@ -2,17 +2,20 @@
 from collections import deque
 from typing import List
 
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+
 r2 = TreeNode(5, None, None)
 l2 = TreeNode(4, None, None)
-r1 = TreeNode(3, None , r2)
+r1 = TreeNode(3, None, r2)
 l1 = TreeNode(2, l2, None)
 root = TreeNode(1, l1, r1)
+
 
 def zigzag(root: TreeNode) -> List[List[int]]:
     if not root:
@@ -20,11 +23,11 @@ def zigzag(root: TreeNode) -> List[List[int]]:
     result = []
     q = deque()
     q.append([root])
-    order = 1 # 1 = left to right, -1 = right to left
+    order = 1  # 1 = left to right, -1 = right to left
     while q:
         temp = []
         nodes = q.popleft()
-        values = [n.val for n in nodes][::order] # reverse order if need be
+        values = [n.val for n in nodes][::order]  # reverse order if need be
         result.append(values)
         for node in nodes:
             if node.left:
@@ -36,5 +39,6 @@ def zigzag(root: TreeNode) -> List[List[int]]:
         temp = []
         order *= -1
     return result
+
 
 print(zigzag(root))

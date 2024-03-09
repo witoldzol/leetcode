@@ -35,7 +35,7 @@ class Solution:
         maximum = nums[0]
         sum = 0
         for n in nums:
-            if sum < 0: # if there is only one element, it will be taken instead of 0
+            if sum < 0:  # if there is only one element, it will be taken instead of 0
                 sum = 0
             sum += n
             maximum = max(sum, maximum)
@@ -47,7 +47,7 @@ class Solution:
         start = 0
         end = 0
         for i, n in enumerate(nums):
-            if sum < 0: # we look backwards
+            if sum < 0:  # we look backwards
                 sum = 0
                 if i < len(nums):
                     start = i
@@ -57,7 +57,7 @@ class Solution:
                 end = i
         return maximum, start, end
 
-    def middle_to_left(self, nums: List[int] ) -> int:
+    def middle_to_left(self, nums: List[int]) -> int:
         current_sum = 0
         maximum = nums[0]
         for x in reversed(nums):
@@ -66,7 +66,7 @@ class Solution:
                 maximum = current_sum
         return maximum
 
-    def middle_to_right(self, nums: List[int] ) -> int:
+    def middle_to_right(self, nums: List[int]) -> int:
         current_sum = 0
         maximum = nums[0]
         for x in nums:
@@ -74,7 +74,6 @@ class Solution:
             if current_sum > maximum:
                 maximum = current_sum
         return maximum
-
 
     def split(self, nums: List[int]) -> int:
         if len(nums) == 1:
@@ -86,7 +85,9 @@ class Solution:
         right_split = self.split(right)
         cross_left = self.middle_to_left(left)
         cross_right = self.middle_to_right(right)
-        return max(left_split, right_split, cross_left + cross_right, cross_left, cross_right)
+        return max(
+            left_split, right_split, cross_left + cross_right, cross_left, cross_right
+        )
 
     def start_to_middle(self, nums: List[int], start: int, end: int) -> int:
         current_sum = 0
@@ -97,7 +98,7 @@ class Solution:
                 maximum = current_sum
         return maximum
 
-    def middle_to_end(self, nums: List[int], start: int, end: int ) -> int:
+    def middle_to_end(self, nums: List[int], start: int, end: int) -> int:
         if start == end:
             return nums[start]
         current_sum = 0
@@ -108,52 +109,57 @@ class Solution:
                 maximum = current_sum
         return maximum
 
-    def maxCrossingSum(self,arr, l, m, h): 
+    def maxCrossingSum(self, arr, l, m, h):
         # left
         sm = 0
         left_sum = -10000
-        for i in range(m, l-1, -1): 
-            sm = sm + arr[i] 
-            if (sm > left_sum): 
-                left_sum = sm 
+        for i in range(m, l - 1, -1):
+            sm = sm + arr[i]
+            if sm > left_sum:
+                left_sum = sm
         # right
         sm = 0
         right_sum = -1000
-        for i in range(m, h + 1): 
-            sm = sm + arr[i] 
-            if (sm > right_sum): 
-                right_sum = sm 
-        return max(left_sum + right_sum - arr[m], left_sum, right_sum)  # why - arr[m] ???? 
+        for i in range(m, h + 1):
+            sm = sm + arr[i]
+            if sm > right_sum:
+                right_sum = sm
+        return max(
+            left_sum + right_sum - arr[m], left_sum, right_sum
+        )  # why - arr[m] ????
 
     def split_i(self, nums: List[int], start: int, end: int) -> int:
         print(f"starting split function, {start=}, {end=}")
         if start > end:
-            return -10**4
+            return -(10**4)
             # raise Exception(f"start is bigger than end, fix it ! {start=} {end=}")
         if start == end:
-            print(f"Start == End {start=}; End of function, returning {nums[start - 1]}")
+            print(
+                f"Start == End {start=}; End of function, returning {nums[start - 1]}"
+            )
             print("==================================================")
             return nums[start - 1]
         middle = (start + end) // 2
         print(f"{middle=}")
-        left_split = self.split_i(nums, start, middle-1)
-        right_split = self.split_i(nums, middle+1, end)
+        left_split = self.split_i(nums, start, middle - 1)
+        right_split = self.split_i(nums, middle + 1, end)
         cross = self.maxCrossingSum(nums, start, middle, end)
         result = max(left_split, right_split, cross)
         print(f"End of function, returning max of {result}")
         print("==================================================")
         return result
 
+
 def find_max(arr):
-# iterate ove the array, keep adding the numbers, if the sum ever dips below zero, reset the pointer
+    # iterate ove the array, keep adding the numbers, if the sum ever dips below zero, reset the pointer
     sum = 0
-    maximum = -10**4
+    maximum = -(10**4)
     for x in arr:
-        if sum < 0: # it's important to check before we add new one, this way we look back and not ahead
+        if (
+            sum < 0
+        ):  # it's important to check before we add new one, this way we look back and not ahead
             sum = 0
         sum += x
         if sum > maximum:
             maximum = sum
     return maximum
-
-

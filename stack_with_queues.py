@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class MyStack:
     def un_reverse(self):
         while len(self.temp):
@@ -11,10 +12,12 @@ class MyStack:
         self.current = deque()
         self.temp = deque()
         self.reversed = False
+
     def push(self, x: int) -> None:
         if self.reversed:
             self.un_reverse()
         self.current.append(x)
+
     def pop(self) -> int:
         if self.reversed:
             return self.temp.popleft()
@@ -25,12 +28,15 @@ class MyStack:
             else:
                 self.reversed = True
                 return i
+
     def top(self) -> int:
         if self.reversed:
             self.un_reverse()
         return self.current[0]
+
     def empty(self) -> bool:
         return self.size == 0
+
 
 s = MyStack()
 s.push(1)

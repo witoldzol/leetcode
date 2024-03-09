@@ -8,6 +8,7 @@ matching_parens["("] = ")"
 left = "{(["
 right = "}])"
 
+
 def check_parens(input: str) -> bool:
     stack = deque()
     for c in input:
@@ -20,6 +21,7 @@ def check_parens(input: str) -> bool:
     if not len(stack):
         return True
     return False
+
 
 valid_input = "{([])}"
 assert True == check_parens(valid_input)
