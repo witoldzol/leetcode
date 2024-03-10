@@ -21,4 +21,10 @@ def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
 
 h = array_to_linked_list([1,2,3])
 result = removeNthFromEnd(h, 2)
-print(f"{result=}")
+assert [1,3] == ll_to_array(result)
+
+h = array_to_linked_list([1,2,3,4,5])
+result = removeNthFromEnd(h, 2)
+assert [1,2,3,5] == ll_to_array(result)
+# print(f"{result=}")
+
