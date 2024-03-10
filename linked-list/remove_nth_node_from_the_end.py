@@ -3,7 +3,7 @@
 from util import ListNode, ll_to_array, array_to_linked_list
 from typing import List, Optional
 
-def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+def removeNthFromEnd2(head: Optional[ListNode], n: int) -> Optional[ListNode]:
 # go to the end - get len
 # len - n - 1 node.next = node.next.next # done
     length = 0
@@ -23,6 +23,9 @@ def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     # delete the target node
     curr.next = curr.next.next
     return head
+
+def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    return []
 
 def test_bob():
     h = array_to_linked_list([1,2,3])
