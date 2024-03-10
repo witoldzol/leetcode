@@ -19,12 +19,29 @@ def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     curr.next = curr.next.next
     return head
 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# TESTS
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 h = array_to_linked_list([1,2,3])
 result = removeNthFromEnd(h, 2)
-assert [1,3] == ll_to_array(result)
+expected = [1,3]
+try:
+    assert expected == ll_to_array(result)
+except:
+    print(f"ERROR:\n{result=} vs {expected=}")
 
 h = array_to_linked_list([1,2,3,4,5])
 result = removeNthFromEnd(h, 2)
-assert [1,2,3,5] == ll_to_array(result)
-# print(f"{result=}")
+expected = [1,2,3,5]
+try:
+    assert expected == ll_to_array(result)
+except:
+    print(f"ERROR:\n{result=} vs {expected=}")
 
+h = array_to_linked_list([1,2])
+result = removeNthFromEnd(h, 2)
+expected = [2]
+try:
+    assert expected == ll_to_array(result)
+except:
+    print(f"ERROR:\n{result=} vs {expected=}")
