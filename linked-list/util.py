@@ -5,16 +5,18 @@ class ListNode:
         self.val = val
         self.next = next
 
-    def __repr__(self):
-        r = []
-        while True:
-            if self.val != None:
-                r.append(self.val)
-            if self.next:
-                self = self.next
-            else:
-                break
-        return str(r)
+    def __repr__(self) -> str:
+        return str(self.val) 
+    # def __repr__(self):
+    #     r = []
+    #     while True:
+    #         if self.val != None:
+    #             r.append(self.val)
+    #         if self.next:
+    #             self = self.next
+    #         else:
+    #             break
+    #     return str(r)
 
 
 def ll_to_array_generator(head: ListNode) -> Generator[int, None, None]:
