@@ -24,8 +24,25 @@ def removeNthFromEnd2(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     curr.next = curr.next.next
     return head
 
+# import pudb
 def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
-    return []
+    # pu.db
+    length = 0
+    curr = head
+    parent_of_node_to_delete = curr
+    while curr:
+        if length == (n + 1):
+            print(f"{parent_of_node_to_delete=}")
+            parent_of_node_to_delete = curr
+        length += 1
+        # 1,2,3, n = 2, parent = 1
+        curr = curr.next
+    parent_of_node_to_delete.next = parent_of_node_to_delete.next.next
+    print(f"{parent_of_node_to_delete=}")
+    return head
+
+h = array_to_linked_list([1,2,3])
+result = removeNthFromEnd(h, 2)
 
 def test_bob():
     h = array_to_linked_list([1,2,3])
