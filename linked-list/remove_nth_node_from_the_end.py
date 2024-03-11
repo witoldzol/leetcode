@@ -28,16 +28,25 @@ def removeNthFromEnd2(head: Optional[ListNode], n: int) -> Optional[ListNode]:
 def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     # pu.db
     length = 0
-    curr = head
+    curr = None
     parent_of_node_to_delete = curr
     while curr:
-        if length == (n + 1):
-            print(f"{parent_of_node_to_delete=}")
-            parent_of_node_to_delete = curr
         length += 1
+        if length >= (n + 1):
+            print(f"{parent_of_node_to_delete=}")
+            if parent_of_node_to_delete == None:
+                parent_of_node_to_delete = head
+            else:
+                parent_of_node_to_delete = parent_of_node_to_delete.next
         # 1,2,3, n = 2, parent = 1
         curr = curr.next
+    # 1,2,3
+    # l=1, target = n + 1
+    # l=2, noop
+    # l=3, 
+    # within a range of 1-(n+1) we can't assign because we don't know where the list ends
     parent_of_node_to_delete.next = parent_of_node_to_delete.next.next
+
     print(f"{parent_of_node_to_delete=}")
     return head
 
