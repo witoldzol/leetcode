@@ -60,6 +60,20 @@ def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
     second.next = second.next.next
     return dummy.next
 
+# ==== review
+def removeNthFromEnd(head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    test = ListNode(0)
+    test.next = head
+    first = test
+    second = test
+    for _ in range(n + 1):
+        first = first.next
+    while first is not None:
+        first = first.next
+        second = second.next
+    second.next = second.next.next
+    return test.next
+
 def test_bob():
     h = array_to_linked_list([1,2,3])
     result = removeNthFromEnd(h, 2)
