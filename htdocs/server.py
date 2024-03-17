@@ -34,11 +34,14 @@ while True:
     if path == '/favicon.ico':
         continue
     path = './htdocs' + path
-    f = open(path, 'r')
-    content = f.read()
-    f.close()
+    try:
+        f = open(path, 'r')
+        content = f.read()
+        f.close()
+        response = 'HTTP/1.0 200 OK\n\n' + content
+    except Exception as e:
+        response = 'HTTP/1.0 404 NOT FOUND\n\nFile Not Found'
     # Send HTTP response
-    response = 'HTTP/1.0 200 OK\n\n' + content
     client_connection.sendall(response.encode())
     client_connection.close()
 
