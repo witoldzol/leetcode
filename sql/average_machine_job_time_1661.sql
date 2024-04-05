@@ -25,3 +25,11 @@ and a.process_id = b.process_id
 and a.activity_type = 'start'
 and b.activity_type = 'end'
 group by a.machine_id
+
+def get_average_time(activity: pd.DataFrame) -> pd.DataFrame:
+    start = activity.query('activity_type == "start"')
+    end = activity.query('activity_type == "end"')
+    merge_df = pd.merge(start, end, on=['machine_id', 'process_id'], suffixes=['_start', '_end'])
+    merge_df['processing_time'] = merge_df['timestamp_end'] - merge_df['timestamp_start']
+    return merge_df.groupby(['machine_id'])['processing_time'].mean().round(3).reset_index()
+    
