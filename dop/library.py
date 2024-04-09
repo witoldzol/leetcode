@@ -23,16 +23,38 @@ class LibrarianData:
 class MemberData:
     book_lending_data: List[BookLendingData]
 
+class UserData:
+    pass
+
 class LibraryData:
     librarian_data: List[LibrarianData]
     member_data: List[MemberData]
     catalog_data: CatalogData
+    user_data: UserData
 
 ###################################### CODE ##############################################################
-# Library
 
-def search_book(library_data: LibraryData, search_query):
-    pass
+class UserManagement:
+    @staticmethod
+    def is_librarian(user_data: UserData, user_id: str):
+        pass
+
+class Catalog:
+    @staticmethod
+    def get_book_lendings(catalog_data: CatalogData, member_id: str):
+        pass
+
+class Library:
+    @staticmethod
+    def get_book_lendings(library_data: LibraryData, user_id: str, member_id: str):
+        if UserManagement.is_librarian(library_data.user_data, user_id):
+            return Catalog.get_book_lendings(library_data.catalog_data, member_id)
+        else:
+            raise Exception("Not allowed to get book lendings")
+
+    @staticmethod
+    def search_book(library_data: LibraryData, search_query: str):
+        pass
 
 # OTHER STUFF
 class CatalogCode:
