@@ -28,3 +28,24 @@ class LibraryData:
     catalog_data: CatalogData
 
 ###################################### CODE ##############################################################
+
+class CatalogCode:
+    pass
+
+class LibrarianCode:
+    pass
+
+class MemberCode:
+    pass
+
+class BookLendingCode:
+    pass
+
+class BookItemCode:
+    pass
+
+class UserCode:
+    pass
+
+class BookItem:
+    pass
