@@ -1,5 +1,8 @@
 from typing import List
 
+class BookLendingData:
+    pass
+
 class CatalogData:
     pass
 
@@ -7,7 +10,7 @@ class LibrarianData:
     pass
 
 class MemberData:
-    pass
+    book_lending_data: List[BookLendingData]
 
 class LibraryData:
     librarian_data: List[LibrarianData]
