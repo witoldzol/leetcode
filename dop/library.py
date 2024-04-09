@@ -1,5 +1,6 @@
 from typing import List
 ###################################### DATA ##############################################################
+
 class BookLendingData:
     pass
 
@@ -28,11 +29,13 @@ class LibraryData:
     catalog_data: CatalogData
 
 ###################################### CODE ##############################################################
+# Library
 
-class CatalogCode:
+def search_book(library_data: LibraryData, search_query):
     pass
 
-class LibrarianCode:
+# OTHER STUFF
+class CatalogCode:
     pass
 
 class MemberCode:
