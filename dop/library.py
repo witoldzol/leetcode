@@ -22,9 +22,12 @@ class CatalogData:
     books: List[Book]
 
 class LibrarianData:
-    pass
+    email: str
+    password: str
 
 class MemberData:
+    email: str
+    password: str
     book_lending_data: List[BookLendingData]
 
 class UserData:
