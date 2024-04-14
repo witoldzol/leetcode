@@ -9,4 +9,11 @@ or employee_id in
 )
 
 
-
+def find_primary_department(employee: pd.DataFrame) -> pd.DataFrame:
+    df = employee
+    df['dc'] = df.groupby('employee_id')['department_id'].transform('nunique')
+    filtered = df[
+        (df['primary_flag']=='Y') | 
+        (df['dc'] == 1)
+    ]
+    return filtered[['employee_id', 'department_id']]
