@@ -28,11 +28,12 @@ class MemberData:
     book_lending_data: List[BookLendingData]
 
 class UserData:
-    pass
+    librarians: List[LibrarianData]
+    members: List[MemberData]
 
 class LibraryData:
-    librarian_data: List[LibrarianData]
-    member_data: List[MemberData]
+    name: str
+    address: str
     catalog_data: CatalogData
     user_data: UserData
 
