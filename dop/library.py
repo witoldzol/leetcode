@@ -4,18 +4,22 @@ from typing import List
 class BookLendingData:
     pass
 
-class BookItemData:
+class BookItem:
     book_lending_data: BookLendingData
 
-class BookData:
-    book_item_data: List[BookItemData]
-    author_data: List["AuthorData"]
+class Book:
+    title: str
+    publication_year: str
+    ISBN: str
+    publisher: str
+    book_item_data: List[BookItem]
+    author_data: List["Author"]
 
-class AuthorData:
-    book_data: List[BookData]
+class Author:
+    books: List[Book]
 
 class CatalogData:
-    book_data: List[BookData]
+    books: List[Book]
 
 class LibrarianData:
     pass
@@ -91,7 +95,4 @@ class BookItemCode:
     pass
 
 class UserCode:
-    pass
-
-class BookItem:
     pass
