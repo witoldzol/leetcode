@@ -2,7 +2,9 @@ from typing import List, Dict
 ###################################### DATA ##############################################################
 
 class BookLendingData:
-    pass
+    lending_date: str
+    book_item_id: str
+    book_isbn: str
 
 class BookItem:
     id: str
