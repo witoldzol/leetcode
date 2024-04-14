@@ -39,15 +39,21 @@ class UserManagement:
     def is_librarian(user_data: UserData, user_id: str):
         pass
 
+    @staticmethod
+    def is_super_member(user_data: UserData, user_id: str):
+        pass
+
+
 class Catalog:
     @staticmethod
-    def get_book_lendings(catalog_data: CatalogData, member_id: str):
+    def get_book_lendings(catalog_data: CatalogData, user_id: str):
         pass
 
 class Library:
     @staticmethod
     def get_book_lendings(library_data: LibraryData, user_id: str, member_id: str):
-        if UserManagement.is_librarian(library_data.user_data, user_id):
+        if UserManagement.is_librarian(library_data.user_data, user_id) or \
+           UserManagement.is_super_member(library_data.user_data, user_id):
             return Catalog.get_book_lendings(library_data.catalog_data, member_id)
         else:
             raise Exception("Not allowed to get book lendings")
