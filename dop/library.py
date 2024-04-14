@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 ###################################### DATA ##############################################################
 
 class BookLendingData:
@@ -13,12 +13,14 @@ class Book:
     ISBN: str
     publisher: str
     book_item_data: List[BookItem]
-    author_data: List["Author"]
+    authors: List[str]
 
 class Author:
-    books: List[Book]
+    books: List[str]
 
 class CatalogData:
+    books_by_isbn: Dict[str, Book]
+    authors_by_id: Dict[str, Author]
     books: List[Book]
 
 class LibrarianData:
