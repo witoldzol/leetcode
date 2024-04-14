@@ -18,11 +18,6 @@ class Book:
 class Author:
     books: List[str]
 
-class CatalogData:
-    books_by_isbn: Dict[str, Book]
-    authors_by_id: Dict[str, Author]
-    books: List[Book]
-
 class LibrarianData:
     email: str
     password: str
@@ -32,29 +27,33 @@ class MemberData:
     password: str
     book_lending_data: List[BookLendingData]
 
-class UserData:
-    librarians: List[LibrarianData]
-    members: List[MemberData]
+class CatalogData:
+    books_by_isbn: Dict[str, Book]
+    authors_by_id: Dict[str, Author]
+
+class UserManagementData:
+    librarians_by_email: Dict[str, LibrarianData]
+    members_by_email: Dict[str, MemberData]
 
 class LibraryData:
     name: str
     address: str
     catalog_data: CatalogData
-    user_data: UserData
+    user_management_data: UserManagementData
 
 ###################################### CODE ##############################################################
 
 class UserManagement:
     @staticmethod
-    def is_librarian(user_data: UserData, user_id: str):
+    def is_librarian(user_data: UserManagementData, user_id: str):
         pass
 
     @staticmethod
-    def is_super_member(user_data: UserData, user_id: str):
+    def is_super_member(user_data: UserManagementData, user_id: str):
         pass
 
     @staticmethod
-    def is_vip_member(user_data: UserData, user_id: str):
+    def is_vip_member(user_data: UserManagementData, user_id: str):
         pass
 
 class Catalog:
@@ -69,8 +68,8 @@ class Catalog:
 class Library:
     @staticmethod
     def get_book_lendings(library_data: LibraryData, user_id: str, member_id: str):
-        if UserManagement.is_librarian(library_data.user_data, user_id) or \
-           UserManagement.is_super_member(library_data.user_data, user_id):
+        if UserManagement.is_librarian(library_data.user_management_data, user_id) or \
+           UserManagement.is_super_member(library_data.user_management_data, user_id):
             return Catalog.get_book_lendings(library_data.catalog_data, member_id)
         else:
             raise Exception("Not allowed to get book lendings")
@@ -83,8 +82,8 @@ class Library:
     def add_book_item(library_data: LibraryData,
                       user_id: str,
                       book_item_info: BookItemInfo):
-        if UserManagement.is_librarian(library_data.user_data, user_id) or \
-           UserManagement.is_super_member(library_data.user_data, user_id):
+        if UserManagement.is_librarian(library_data.user_management_data, user_id) or \
+           UserManagement.is_super_member(library_data.user_management_data, user_id):
             Catalog.add_book_item(library_data.catalog_data, book_item_info)
 
 # OTHER STUFF
