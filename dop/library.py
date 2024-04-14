@@ -5,27 +5,33 @@ class BookLendingData:
     pass
 
 class BookItem:
-    book_lending_data: BookLendingData
+    id: str
+    lib_id: str
+    purchase_date: str
+    is_lent: bool
 
 class Book:
     title: str
     publication_year: str
-    ISBN: str
+    isbn: str
     publisher: str
-    book_item_data: List[BookItem]
-    authors: List[str]
+    author_ids: List[str]
+    book_items: List[BookItem]
 
 class Author:
-    books: List[str]
+    id: str
+    name: str
+    book_isbns: List[str]
 
 class LibrarianData:
     email: str
-    password: str
+    encrypted_password: str
 
 class MemberData:
     email: str
-    password: str
-    book_lending_data: List[BookLendingData]
+    encrypted_password: str
+    is_blocked: bool
+    book_lendings: List[BookLendingData]
 
 class CatalogData:
     books_by_isbn: Dict[str, Book]
