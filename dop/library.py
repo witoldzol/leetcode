@@ -1,6 +1,7 @@
 from typing import List, Dict
+
 ### sample ###
-watchment = {
+watchmen_book = {
   "isbn": "978-1779501127",
   "title": "Watchmen",
   "publicationYear": 1987,
@@ -18,6 +19,8 @@ watchment = {
     }
   ]
 }
+print(watchmen)
+
 ###################################### DATA ##############################################################
 
 class BookLendingData:
