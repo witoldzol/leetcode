@@ -23,3 +23,7 @@ final as (
 )
 select * from final
 
+def latest_login(logins: pd.DataFrame) -> pd.DataFrame:
+   filtered = logins[logins['time_stamp'].dt.year == 2020]
+   df = filtered.groupby('user_id')['time_stamp'].max().rename('last_stamp').reset_index()
+   return df
