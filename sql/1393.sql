@@ -15,3 +15,22 @@ select  stock_name, (total_sell - total_buy) as capital_gain_loss from
   )
   group by stock_name
 )
+
+-- alternative solution
+
+-- group sell & buy per each company
+with operation_sums as 
+(
+    select stock_name, operation, sum(price) as price
+    from stocks
+    group by stock_name, operation
+)
+-- calculate difference
+select stock_name, 
+(
+  sum ( case when operation = 'Sell' then price else 0 end)
+  -
+  sum ( case when operation = 'Buy' then price else 0 end)
+) as capital_gain_loss
+from operation_sums
+group by stock_name 
