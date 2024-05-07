@@ -34,3 +34,10 @@ select stock_name,
 ) as capital_gain_loss
 from operation_sums
 group by stock_name 
+
+-- pandas
+def capital_gainloss(stocks: pd.DataFrame) -> pd.DataFrame:
+  df = stocks
+  df = df.apply(buysell, axis=1).reset_index()
+  df = df.groupby('stock_name')['price'].sum().reset_index()
+  return df.rename(columns={'price': 'capital_gain_loss'})
