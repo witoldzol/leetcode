@@ -20,4 +20,3 @@ def calculate_special_bonus(employees: pd.DataFrame) -> pd.DataFrame:
     )
     sorted = df.sort_values(by='employee_id') 
     return sorted[['employee_id', 'bonus']]
-
