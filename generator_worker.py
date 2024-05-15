@@ -1,13 +1,5 @@
 import collections
 
-def gen():
-    q = collections.deque()
-    while True:
-
-    received = yield "foo"
-    print(received)
-
-
 def worker(f):
     tasks = collections.deque()
     value = None
@@ -20,8 +12,16 @@ def worker(f):
             if tasks:
                 args = tasks.popleft()
                 value = f(*args)
-a = gen()
-print(a)
-print(type(a))
-a.send(None)
-a.send('get this done')
+
+fun = lambda x: x*x
+
+w = worker(fun)
+
+print(w)
+r = w.send(None)
+print(f"{w=}")
+print(f"{r=}")
+p = w.send([(5,)])
+print(f"{p=}")
+k = next(w)
+print(f"{k=}")
