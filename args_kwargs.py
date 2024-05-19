@@ -21,4 +21,9 @@ def bar(*fargs, **slargs):
 def z(**b):
     print(b)
     print(type(b))
-z(**kw)
+
+def c(*b):
+    print(b)
+    print(type(b))
+
+c(*a)
