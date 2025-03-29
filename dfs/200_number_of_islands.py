@@ -1,34 +1,66 @@
+from collections import deque
 from typing import List
-grid = [
+grid_1= [
   ["1","1","1","1","0"],
   ["1","1","0","1","0"],
   ["1","1","0","0","0"],
   ["0","0","0","0","0"]
 ]
-ISLANDS = set()
+grid_3= [["1","1","0","0","0"],
+        ["1","1","0","0","0"],
+        ["0","0","1","0","0"],
+        ["0","0","0","1","1"]]
 class Solution:
-    def not_in_existing_island(self, i: int, k: int) -> bool:
-        return True
+    def island_exists(self, i: int, k: int, ISLANDS) -> bool:
+        return (i,k) in ISLANDS
 
-    def explore_island(self, i: int, k: int) -> tuple[int,int,int]:
-        # bfs
+    def explore_island(self, i: int, k: int, grid: list[list[str]], ISLANDS) -> None:
+        queue = deque()
+        visited  = set()
+        if (i,k) not in ISLANDS:
+            queue.append((i,k))
+        while queue:
+            i,k = queue.pop()
+            visited.add((i,k))
+            if (i,k) in ISLANDS or grid[i][k] == '0':
+                continue
+            ISLANDS.add((i,k))
+            # check up
+            if i - 1 < 0:
+                pass
+            elif (i-1,k) not in visited:
+                queue.append((i-1,k))
+            # check down
+            if i + 1 >= len(grid):
+                pass
+            elif (i+1,k) not in visited:
+                queue.append((i+1,k))
+            # check left
+            if k -1 < 0:
+                pass
+            elif (i,k-1) not in visited:
+                queue.append((i,k-1))
+            # check right
+            if k + 1 >= len(grid[0]):
+                pass
+            elif (i,k + 1) not in visited:
+                queue.append((i,k + 1))
+        return ISLANDS
+
 
     def numIslands(self, grid: List[List[str]]) -> int:
-        g_len = len(grid)
-        g_wid = len(grid[0])
-        print(g_len)
-        print(g_wid)
+        result = 0
+        ISLANDS = set()
+        if not grid:
+            return 0
         for i_idx, i in enumerate(grid):
             for k_idx, k in enumerate(i):
-                if k == 1 and self.not_in_existing_island(i_idx, k_idx):
-                    ISLANDS.add(self.explore_island(i_idx, k_idx))
-# if we walk from 0,0 ... to 0,n and look for a land
-# when we find it, we dfs until we get the borders
-# we save the borders in a map: set( tuples of coords )
-# 
-# we continue then row by row, and if we find 1, we check if it falls into existing island ) ( this can be very expensive )
-
+                if k == '1' and not self.island_exists(i_idx, k_idx, ISLANDS):
+                    result += 1
+                    ISLANDS = self.explore_island(i_idx, k_idx, grid, ISLANDS)
+        return result
 s = Solution()
-r = s.numIslands(grid)
-
-assert r == 1
+r_1 = s.numIslands(grid_1)
+assert r_1 == 1
+r_3 = s.numIslands(grid_3)
+assert r_3 == 3
