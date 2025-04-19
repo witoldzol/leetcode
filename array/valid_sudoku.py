@@ -1,3 +1,5 @@
+from typing import List
+
 # board =  \
 # [["5","3",".",".","7",".",".",".","."]
 # ,["6",".",".","1","9","5",".",".","."]
@@ -21,44 +23,49 @@ board = [
     [".",".","4",".",".",".",".",".","."]
 ]
 
-def validate_square(n,m,j,k):
-    s = set()
-    for i in range(n,m):
-        for k in range(j,k):
-            cell = board[i][k]
-            if cell == '.':
-                continue
-            if cell in s:
-                return False
-            else:
-                s.add(cell)
+def validate_square(board):
+    for k in range(0,9,3):
+        for i in range(0,9,3):
+            s = set()
+            for x in range(k,k+3):
+                for y in range(i,i+3):
+                    cell = board[x][y]
+                    if cell == '.':
+                        continue
+                    if cell in s:
+                        return False
+                    else:
+                        s.add(cell)
     return True
 
-def validate(board):
-    # row
-    for row in board:
-        s = set()
-        for x in row:
-            if x in s:
-                if x == '.':
-                    continue
-                print(x, ' found in set ', s)
-                return False
-            else:
-                s.add(x)
-    # column
-    for i in range(9):
-        s = set()
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
         for row in board:
-            if row[i] == '.':
-                continue
-            if row[i] in s:
-                print('COLUMN: ' , i)
-                print(row[i], ' found in set ', s)
-                return False
-            else:
-                s.add(row[i])
-    res = all(validate_square(0,3,0,3)
-    return True
+            s = set()
+            for x in row:
+                if x in s:
+                    if x == '.':
+                        continue
+                    print(x, ' found in set ', s)
+                    return False
+                else:
+                    s.add(x)
+        # column
+        for i in range(9):
+            s = set()
+            for row in board:
+                if row[i] == '.':
+                    continue
+                if row[i] in s:
+                    print('COLUMN: ' , i)
+                    print(row[i], ' found in set ', s)
+                    return False
+                else:
+                    s.add(row[i])
+        res = validate_square(board)
+        print('res', res)
+        if not res:
+            return False
+        return True
 
-print(validate(board))
+print(Solution().isValidSudoku(board))
