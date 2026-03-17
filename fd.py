@@ -3,9 +3,9 @@ from flatten_dict import flatten
 
 def my_flatten(input:dict, separator = '/', parent = '') -> list[tuple[str,Any]]:
     result = []
-    for k,v in input.items():
+    for k,v in input.items() if type(input) == dict else enumerate(input):
         key = f"{parent}{separator}{k}" if parent else str(k)
-        if isinstance(v, dict):
+        if isinstance(v, (dict,list)):
             result.extend(my_flatten(v,separator = '/', parent = key))
         else:
             result.append((key,v))
@@ -50,7 +50,7 @@ def test_nested_list_2():
     assert expected == dict(actual)
 
 def test_nested_list_3():
-    input = {"a":1, "b":{"c":3, "d": [1, 2, {"e":3}]} }
+    input = {"a":1, "b":{"c":3, "d": [1, 2, {"e":{"f":4}}]} }
     expected = flatten(input, reducer='path')
     print(expected)
     actual = my_flatten(input)

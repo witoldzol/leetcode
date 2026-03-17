@@ -27,5 +27,6 @@ def dd(data, parent_key='', sep='.'):
     return dict(items)
 
 my_flat = dd(nested_json)
+print(flat)
 assert flat == my_flat, f"{flat} \n does not match \n {my_flat}"
 
