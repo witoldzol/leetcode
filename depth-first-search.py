@@ -1,15 +1,5 @@
 from typing import List
 
-board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
-board = [["a", "a"]]
-board = [["a", "b"], ["c", "d"]]
-# word = "ABCCED"
-# word = "ABCB"
-# word = "aaa"
-# word = "cdba"
-word = "bacd"
-
 
 class Solution:
     @staticmethod
@@ -110,5 +100,27 @@ class Solution:
         return False
 
 
+board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+word = "ABCCED"
 res = Solution.exist(board, word)
+assert True is res
+
+word = "ABCB"
+board = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
+res = Solution.exist(board, word)
+assert False is res
+
+board = [["a", "a"]]
+word = "aaa"
+res = Solution.exist(board, word)
+assert False is res
+
+board = [["a", "b"], ["c", "d"]]
+word = "bacd"
+res = Solution.exist(board, word)
+assert True is res
+
+
+board = [["a", "b"], ["c", "d"]]
+word = "cdba"
 assert True is res
