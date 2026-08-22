@@ -25,12 +25,16 @@ class DAG:
             q.append(w)
         # count deps for each workload
         how_many_deps = {name: 0 for name, _ in self.workloads.items()}
-        dep_to_workload = {}
+
+        dep_to_workload: dict[str, list[Workload]] = {}
         # build dep -> workloads map
-        for workload in self.workloads.values():
+        for _, workload in self.workloads.items():
             for dep in workload.dependencies:
                 if dep in dep_to_workload:
-                    dep_to_workload[dep].append(workload.name)
+                    dep_to_workload[dep].append(workload)
+                    how_many_deps[workload.name] += 1
+                else:
+                    dep_to_workload[dep] = [workload]
                     how_many_deps[workload.name] += 1
 
         while q:
@@ -38,8 +42,6 @@ class DAG:
             workload.handler()
             if workload.name in dep_to_workload:
                 for w in dep_to_workload[workload.name]:
-                    if w is None:
-                        continue
                     if w.name in how_many_deps:
                         how_many_deps[w.name] -= 1
                         if how_many_deps[w.name] == 0:
