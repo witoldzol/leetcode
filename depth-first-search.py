@@ -1,3 +1,4 @@
+from functools import lru_cache
 from typing import List
 
 
@@ -5,10 +6,10 @@ class Solution:
     @staticmethod
     def exist(board: List[List[str]], word: str) -> bool:
         # visit every cell
+        board_tup = tuple(tuple(row) for row in board)
         for x in range(len(board)):
             for y in range(len(board[0])):
-                # print(f"checking {x},{y}")
-                res = Solution.dfs(board, word, (x, y), {(x, y)}, 0)
+                res = Solution.dfs(board_tup, word, (x, y), {(x, y)}, 0)
                 if res:
                     return res
         return False
@@ -16,7 +17,7 @@ class Solution:
     # this will be our recursive call
     @staticmethod
     def dfs(
-        board: list[list[str]],
+        board: tuple[tuple[str]],
         word: str,
         start: tuple[int, int],
         visited: set[tuple[int, int]],
