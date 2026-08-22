@@ -35,68 +35,23 @@ class Solution:
         if current_index >= len(word):
             # print(f"{current_index=} >= {len(word)=} -> FALSE")
             return False
-        # check up
-        dx = x - 1
-        dy = y
-        if (
-            dx < len(board)
-            and dx >= 0
-            and dy < len(board[0])
-            and dy >= 0
-            and (dx, dy) not in visited
-        ):
-            up_res = Solution.dfs(
-                board, word, (dx, dy), visited | {(dx, dy)}, current_index
-            )
-            if up_res:
-                return True
-        # check down
-        dx = x + 1
-        dy = y
-        if (
-            dx < len(board)
-            and dx >= 0
-            and dy < len(board[0])
-            and dy >= 0
-            and (dx, dy) not in visited
-        ):
-            up_res = Solution.dfs(
-                board, word, (dx, dy), visited | {(dx, dy)}, current_index
-            )
-            if up_res:
-                return True
-
-        # check left
-        dx = x
-        dy = y - 1
-        if (
-            dx < len(board)
-            and dx >= 0
-            and dy < len(board[0])
-            and dy >= 0
-            and (dx, dy) not in visited
-        ):
-            up_res = Solution.dfs(
-                board, word, (dx, dy), visited | {(dx, dy)}, current_index
-            )
-            if up_res:
-                return True
-        # check right
-        dx = x
-        dy = y + 1
-        if (
-            dx < len(board)
-            and dx >= 0
-            and dy < len(board[0])
-            and dy >= 0
-            and (dx, dy) not in visited
-        ):
-            up_res = Solution.dfs(
-                board, word, (dx, dy), visited | {(dx, dy)}, current_index
-            )
-            if up_res:
-                return True
-        # default passthrough
+        # check all directions
+        DIRECTIONS = ((0, 1), (1, 0), (0, -1), (-1, 0))
+        for xx, yy in DIRECTIONS:
+            dx = x + xx
+            dy = y + yy
+            if (
+                dx < len(board)
+                and dx >= 0
+                and dy < len(board[0])
+                and dy >= 0
+                and (dx, dy) not in visited
+            ):
+                up_res = Solution.dfs(
+                    board, word, (dx, dy), visited | {(dx, dy)}, current_index
+                )
+                if up_res:
+                    return True
         return False
 
 
