@@ -8,13 +8,12 @@ class Solution:
             start: tuple[int, int],
             current_index: int,
         ) -> bool:
+            if current_index == len(word):
+                return True
             x, y = start
-            # print(f" starting dfs {x}, {y}, {current_index=}, {visited=}")
             if board[x][y] != word[current_index]:
-                # print(f"{board[x][y]=} != {word[current_index]} -> FALSE")
                 return False
             if board[x][y] == word[current_index] and current_index == len(word) - 1:
-                # print(f"returning true {current_index=}, {x=}, {y=}")
                 return True
             current_index += 1
             if current_index >= len(word):
