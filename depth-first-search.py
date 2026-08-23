@@ -21,21 +21,16 @@ class Solution:
                 return False
             current_index += 1
             # check all directions
-            DIRECTIONS = ((0, 1), (1, 0), (0, -1), (-1, 0))
             temp = board[x][y]
             board[x][y] = "#"
-            for xx, yy in DIRECTIONS:
-                dx = x + xx
-                dy = y + yy
-                if dx < len(board) and dx >= 0 and dy < len(board[0]) and dy >= 0:
-                    up_res = dfs(
-                        (dx, dy),
-                        current_index,
-                    )
-                    if up_res:
-                        return True
+            res = (
+                dfs((x + 1, y), current_index)
+                or dfs((x - 1, y), current_index)
+                or dfs((x, y + 1), current_index)
+                or dfs((x, y - 1), current_index)
+            )
             board[x][y] = temp
-            return False
+            return res
 
         # visit every cell
         for x in range(len(board)):
