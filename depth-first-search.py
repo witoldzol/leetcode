@@ -11,13 +11,15 @@ class Solution:
             if current_index == len(word):
                 return True
             x, y = start
-            if board[x][y] != word[current_index]:
+            if (
+                x < 0
+                or x >= len(board)
+                or y < 0
+                or y >= len(board[0])
+                or board[x][y] != word[current_index]
+            ):
                 return False
-            if board[x][y] == word[current_index] and current_index == len(word) - 1:
-                return True
             current_index += 1
-            if current_index >= len(word):
-                return False
             # check all directions
             DIRECTIONS = ((0, 1), (1, 0), (0, -1), (-1, 0))
             temp = board[x][y]
